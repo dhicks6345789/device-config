@@ -4,7 +4,11 @@
 import os
 
 print("Configuring...")
-print("/etc/xdg/lxsession/LXDE-pi/autostart")
+
+configHandle = open("/etc/xdg/lxsession/LXDE-pi/autostart", "w")
+configHandle.write("point-rpi\n")
+configHandle.write("/usr/bin/chromium --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
+configHandle.close()
 
 #os.makedirs("/home/pi/.config/autostart", exist_ok=True)
 #configHandle = open("/home/pi/.config/autostart/kiosk.desktop", "w")
@@ -14,4 +18,4 @@ print("/etc/xdg/lxsession/LXDE-pi/autostart")
 #configHandle.write("Exec=/usr/bin/chromium --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
 #configHandle.close()
 
-#os.system("sudo reboot")
+os.system("reboot")
