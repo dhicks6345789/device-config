@@ -3,4 +3,11 @@
 # Standard libraries.
 import os
 
-print ("Hello, world!")
+print("Configuring...")
+os.makedirs("/home/pi/.config/autostart", exist_ok=True)
+configHandle = open("/home/pi/.config/autostart/kiosk.desktop", "w")
+configHandle.write("[Desktop Entry]\n")
+configHandle.write("Type=application\n")
+configHandle.write("Name=Kiosk\n")
+configHandle.write("Exec=/usr/bin/chromium --incognito https://remote.knightsbridgeschool.com\n")
+configHandle.close()
