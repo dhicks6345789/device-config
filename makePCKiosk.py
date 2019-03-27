@@ -14,7 +14,7 @@ configString = ""
 configHandle = open("/boot/grub/grub.cfg")
 for configLine in configHandle.readlines():
   configLine.replace("timeout=5","timeout=0")
-  configString  configString + configLine
+  configString = configString + configLine
 configHandle.close()
 
 configHandle = open("grub.conf","w")
