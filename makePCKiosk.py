@@ -17,7 +17,7 @@ for configLine in configHandle.readlines():
   configString = configString + configLine
 configHandle.close()
 
-configHandle = open("grub.conf","w")
+configHandle = open("/boot/grub/grub.conf","w")
 configHandle.write(configString)
 configHandle.close()
 
