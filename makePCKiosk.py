@@ -14,8 +14,8 @@ else:
   print("Error - Chromium not installed.")
   sys.exit(1)
 
+print("Re-writing GUI Autostart file.")
 configHandle = open("/etc/xdg/lxsession/LXDE-pi/autostart","w")
-# To do: check these settings work okay.
 configHandle.write("xset s noblank\n")
 configHandle.write("xset s off\n")
 configHandle.write("xset -dpms\n")
@@ -24,6 +24,7 @@ configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-b
 configHandle.close()
 
 if os.path.exists("/boot/grub/grub.cfg"):
+  print("Removing boot timeout from grub.conf.")
   configString = ""
   configHandle = open("/boot/grub/grub.cfg")
   for configLine in configHandle.readlines():
@@ -35,4 +36,4 @@ if os.path.exists("/boot/grub/grub.cfg"):
   configHandle.write(configString)
   configHandle.close()
 
-#os.system("reboot")
+os.system("reboot")
