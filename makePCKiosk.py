@@ -4,7 +4,7 @@
 import os
 import sys
 
-print("Configuring... Bananas")
+print("Configuring...")
 
 if os.path.exists("/usr/bin/chromium"):
   chromiumPath = "/usr/bin/chromium"
