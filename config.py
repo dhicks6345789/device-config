@@ -5,13 +5,13 @@ import os
 import sys
 import collections
 
-#if os.path.exists("/usr/bin/chromium"):
-#  chromiumPath = "/usr/bin/chromium"
-#elif os.path.exists("/usr/bin/chromium-browser"):
-#  chromiumPath = "/usr/bin/chromium-browser"
-#else:
-#  print("Error - Chromium not installed.")
-#  sys.exit(1)
+if os.path.exists("/usr/bin/chromium"):
+  chromiumPath = "/usr/bin/chromium"
+elif os.path.exists("/usr/bin/chromium-browser"):
+  chromiumPath = "/usr/bin/chromium-browser"
+else:
+  print("Error - Chromium not installed.")
+  sys.exit(1)
 
 menu = collections.OrderedDict()
 menu["Development Environments"] = collections.OrderedDict()
@@ -29,13 +29,13 @@ def displayMenu(theMenu):
     return(displayMenu(selectedOption))
   return(selectedOption)
     
-menuResult = displayMenu(menu)
-if menuResult == "pythonHugo":
-  print "Configuring system with Python and Hugo..."
-elif menuResult == "govukJekyll":
-  print "Configuring system with the GOV.UK Jekyll environment..."
-  
-sys.exit(1)
+#menuResult = displayMenu(menu)
+#if menuResult == "pythonHugo":
+#  print "Configuring system with Python and Hugo..."
+#elif menuResult == "govukJekyll":
+#  print "Configuring system with the GOV.UK Jekyll environment..."  
+
+#sys.exit(1)
   
 print("Re-writing GUI Autostart file.")
 configHandle = open("/etc/xdg/lxsession/LXDE-pi/autostart","w")
