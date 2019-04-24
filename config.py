@@ -44,7 +44,7 @@ configHandle.write("xset s off\n")
 configHandle.write("xset -dpms\n")
 configHandle.write("point-rpi\n")
 #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
-configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=false&loop=false&delayms=3000\n")
+configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
 configHandle.close()
 
 sys.exit(1)
