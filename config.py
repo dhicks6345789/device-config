@@ -54,8 +54,7 @@ if os.path.exists("/boot/grub/grub.cfg"):
   configString = ""
   configHandle = open("/boot/grub/grub.cfg")
   for configLine in configHandle.readlines():
-    configLine.replace("timeout=5","timeout=0")
-    configString = configString + configLine
+    configString = configString + configLine.replace("timeout=5","timeout=0")
   configHandle.close()
 
   configHandle = open("/boot/grub/grub.conf","w")
