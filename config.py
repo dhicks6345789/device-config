@@ -5,18 +5,18 @@ import os
 import sys
 import collections
 
+chromiumPath = ""
 if os.path.exists("/usr/bin/chromium"):
   chromiumPath = "/usr/bin/chromium"
 elif os.path.exists("/usr/bin/chromium-browser"):
   chromiumPath = "/usr/bin/chromium-browser"
-else:
-  print("Error - Chromium not installed.")
-  sys.exit(1)
 
 menu = collections.OrderedDict()
-menu["Development Environments"] = collections.OrderedDict()
-menu["Development Environments"]["Python with Hugo"] = "pythonHugo"
-menu["Development Environments"]["GOV.UK / Jekyll"] = "govukJekyll"
+menu["Server Environments"] = collections.OrderedDict()
+menu["Server Environments"]["Python with Hugo"] = "pythonHugo"
+menu["Server Environments"]["GOV.UK / Jekyll"] = "govukJekyll"
+menu["Client Environments"] = collections.OrderedDict()
+menu["Client Environments"]["Web-based Kiosk"] = "webKiosk"
 
 def displayMenu(theMenu):
   currentItem = 1
