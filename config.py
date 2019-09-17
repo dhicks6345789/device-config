@@ -26,7 +26,6 @@ def displayMenu(theMenu):
     currentItem = currentItem + 1
   userSelection = input("Selection: ")
   selectedOption = theMenu[list(theMenu.keys())[int(userSelection)-1]]
-  print(selectedOption)
   if isinstance(selectedOption, collections.OrderedDict):
     return(displayMenu(selectedOption))
   return(selectedOption)
