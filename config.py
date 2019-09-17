@@ -61,3 +61,7 @@ elif menuResult == "govukJekyll":
   print("Configuring system with the GOV.UK Jekyll environment...")
 elif menuResult == "dataloggingKiosk":
   print("Configuring system as a Science Datalogging Kiosk...")
+  print(" - Remove Grub boot timeout")
+  print(" - Set auto-login")
+  print(" - Install GUI, logging software, Chrome")
+  print(" - Hand over to web-editable script to run logging, Chrome, anything else")
