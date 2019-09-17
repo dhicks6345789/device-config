@@ -35,7 +35,7 @@ def displayMenu(theMenu):
 #elif menuResult == "govukJekyll":
 #  print "Configuring system with the GOV.UK Jekyll environment..."  
 
-#sys.exit(1)
+sys.exit(1)
 
 print("Re-writing GUI Autostart file.")
 configHandle = open("/etc/xdg/lxsession/LXDE-pi/autostart","w")
