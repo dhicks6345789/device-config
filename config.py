@@ -25,12 +25,12 @@ def displayMenu(theMenu):
     print(str(currentItem) + ": " + menuItem)
     currentItem = currentItem + 1
   userSelection = input("Selection: ")
+  print(userSelection)
   selectedOption = theMenu[list(theMenu.keys())[int(userSelection)-1]]
   if isinstance(selectedOption, collections.OrderedDict):
     return(displayMenu(selectedOption))
   return(selectedOption)
 
-print("MENU:")
 menuResult = displayMenu(menu)
 if menuResult == "pythonHugo":
   print("Configuring system with Python and Hugo...")
