@@ -17,6 +17,7 @@ menu["Server Environments"]["Python with Hugo"] = "pythonHugo"
 menu["Server Environments"]["GOV.UK / Jekyll"] = "govukJekyll"
 menu["Client Environments"] = collections.OrderedDict()
 menu["Client Environments"]["Web-based Kiosk"] = "webKiosk"
+menu["Client Environments"]["Science Datalogging Kiosk"] = "dataloggingKiosk"
 
 def displayMenu(theMenu):
   currentItem = 1
@@ -29,11 +30,13 @@ def displayMenu(theMenu):
     return(displayMenu(selectedOption))
   return(selectedOption)
     
-#menuResult = displayMenu(menu)
-#if menuResult == "pythonHugo":
-#  print "Configuring system with Python and Hugo..."
-#elif menuResult == "govukJekyll":
-#  print "Configuring system with the GOV.UK Jekyll environment..."  
+menuResult = displayMenu(menu)
+if menuResult == "pythonHugo":
+  print "Configuring system with Python and Hugo..."
+elif menuResult == "govukJekyll":
+  print "Configuring system with the GOV.UK Jekyll environment..."
+elif menuResult == "govukJekyll":
+  print "Configuring system as a Science Datalogging Kiosk..."
 
 sys.exit(1)
 
