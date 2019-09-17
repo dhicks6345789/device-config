@@ -54,6 +54,9 @@ def removeGrubBootTimeout():
     configHandle.write(configString)
     configHandle.close()
     
+def configRclone():
+  print("Configuring rclone...")
+    
 menuResult = displayMenu(menu)
 if menuResult == "pythonHugo":
   print("Configuring system with Python and Hugo...")
@@ -63,5 +66,6 @@ elif menuResult == "dataloggingKiosk":
   print("Configuring system as a Science Datalogging Kiosk...")
   print(" - Remove Grub boot timeout")
   print(" - Set auto-login")
-  print(" - Install GUI, logging software, Chrome")
+  print(" - Install logging software, Chrome")
+  print(" - Set up rclone")
   print(" - Hand over to web-editable script to run logging, Chrome, anything else")
