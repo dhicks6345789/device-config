@@ -36,7 +36,7 @@ if menuResult == "pythonHugo":
   print("Configuring system with Python and Hugo...")
 elif menuResult == "govukJekyll":
   print("Configuring system with the GOV.UK Jekyll environment...")
-elif menuResult == "govukJekyll":
+elif menuResult == "dataloggingKiosk":
   print("Configuring system as a Science Datalogging Kiosk...")
 
 sys.exit(1)
