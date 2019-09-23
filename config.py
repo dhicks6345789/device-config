@@ -45,14 +45,14 @@ def setAutostart(autostartLines):
 
 def removeGrubBootTimeout():
   if os.path.exists("/boot/grub/grub.cfg"):
-    print("Removing boot timeout from grub.conf.")
+    print("Removing boot timeout from grub.cfg.")
     configString = ""
     configHandle = open("/boot/grub/grub.cfg")
     for configLine in configHandle.readlines():
       configString = configString + configLine.replace("timeout=5","timeout=0")
     configHandle.close()
     
-    configHandle = open("/boot/grub/grub.conf","w")
+    configHandle = open("/boot/grub/grub.cfg","w")
     configHandle.write(configString)
     configHandle.close()
     
