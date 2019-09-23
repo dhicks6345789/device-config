@@ -67,6 +67,9 @@ elif menuResult == "govukJekyll":
 elif menuResult == "dataloggingKiosk":
   print("Configuring system as a Science Datalogging Kiosk...")
   removeGrubBootTimeout()
+  if not os.path.exists("linuxSensorlab.zip"):
+    os.system("curl -s -o linuxSensorlab.zip \"http://ccgi.dcpmicro.plus.com/dcplogit/files/software/linuxSensorlab.zip\"")
+    os.system("")
   print(" - Install logging software, Chrome")
   print(" - Set up rclone")
   print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
