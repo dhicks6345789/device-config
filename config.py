@@ -30,14 +30,16 @@ def displayMenu(theMenu):
     return(displayMenu(selectedOption))
   return(selectedOption)
 
-def setAutostart():
+def setAutostart(autostartLines):
   print("Re-writing GUI Autostart file.")
   configHandle = open("/etc/xdg/lxsession/LXDE-pi/autostart","w")
   configHandle.write("xset s noblank\n")
   configHandle.write("xset s off\n")
   configHandle.write("xset -dpms\n")
   configHandle.write("point-rpi\n")
-  configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
+  for autostartLine in autostartLines:
+      configHandle.write(autostartLine + \n")
+  #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
   #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
   configHandle.close()
 
@@ -64,8 +66,8 @@ elif menuResult == "govukJekyll":
   print("Configuring system with the GOV.UK Jekyll environment...")
 elif menuResult == "dataloggingKiosk":
   print("Configuring system as a Science Datalogging Kiosk...")
-  print(" - Remove Grub boot timeout")
-  print(" - Set auto-login")
+  removeGrubBootTimeout()
+  setAutostart([chromiumPath + " --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/senior])
   print(" - Install logging software, Chrome")
   print(" - Set up rclone")
   print(" - Hand over to web-editable script to run logging, Chrome, anything else")
