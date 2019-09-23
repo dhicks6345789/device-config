@@ -69,7 +69,12 @@ elif menuResult == "dataloggingKiosk":
   removeGrubBootTimeout()
   if not os.path.exists("linuxSensorlab.zip"):
     os.system("curl -s -o linuxSensorlab.zip \"http://ccgi.dcpmicro.plus.com/dcplogit/files/software/linuxSensorlab.zip\"")
-    os.system("")
+    os.system("unzip linuxSensorlab.zip")
+    os.system("gunzip SensorLab\ 1-1-0\ for\ Linux.tgz")
+    os.system("tar xf SensorLab\ 1-1-0\ for\ Linux.tar")
+    os.system("apt-get install libpango1.0-0")
+    os.system("apt-get install libpng12-0")
+    os.system("dpkg -i /home/pi/device-config/SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-sensorlab_1.1-0_i386.deb")
   print(" - Install logging software, Chrome")
   print(" - Set up rclone")
   print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
