@@ -69,7 +69,7 @@ elif menuResult == "dataloggingKiosk":
   removeGrubBootTimeout()
   print(" - Install logging software, Chrome")
   print(" - Set up rclone")
-  print(" - Set up to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
+  print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
   autorunFile = open("/home/pi/autorun.sh", "w")
   autorunFile.write("sleep 4\n")
   autorunFile.write("curl -L -s \"https://drive.google.com/uc?export=download&id=1UxZMVK_YfD_B2fC_XlGfPaIKeV9T6yVp\" | python3")
