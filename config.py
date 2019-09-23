@@ -67,7 +67,7 @@ elif menuResult == "govukJekyll":
 elif menuResult == "dataloggingKiosk":
   print("Configuring system as a Science Datalogging Kiosk...")
   removeGrubBootTimeout()
-  setAutostart([chromiumPath + " --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/senior])
+  setAutostart([chromiumPath + " --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/senior"])
   print(" - Install logging software, Chrome")
   print(" - Set up rclone")
   print(" - Hand over to web-editable script to run logging, Chrome, anything else")
