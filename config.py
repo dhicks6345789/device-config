@@ -78,7 +78,6 @@ elif menuResult == "dataloggingKiosk":
     os.system("dpkg -i libpng12-0.deb")
     os.system("dpkg -i /home/pi/device-config/SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-sensorlab_1.1-0_i386.deb")
     os.system("dpkg -i /home/pi/device-config/SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-usbrules_1.1-0_all.deb")
-  print(" - Install logging software, Chrome")
   print(" - Set up rclone")
   print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
   autorunFile = open("/home/pi/autorun.sh", "w")
