@@ -106,7 +106,7 @@ elif menuResult == "dataloggingKiosk":
       "send \"n\\r\"",
       "expect \"y/n>\"",
       "send \"y\\r\"",
-      chromiumPath + " http://127.0.0.1:53682/auth",
+      "exec " + chromiumPath + " http://127.0.0.1:53682/auth",
       "interact"
     ]))
   
@@ -141,7 +141,7 @@ elif menuResult == "dataloggingKiosk":
     #expectFile.write("send \"q\r\"\n")
   
     expectFile.close()
-    os.system("su pi \"expect rclone.expect\"")
+    os.system("su pi -c \"expect rclone.expect\"")
     #os.system("rm rclone.expect")
     
   print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
