@@ -106,7 +106,6 @@ elif menuResult == "dataloggingKiosk":
       "send \"n\\r\"",
       "expect \"y/n>\"",
       "send \"y\\r\"",
-      #"exec " + chromiumPath + " http://127.0.0.1:53682/auth",
       "expect \"y/n>\"",
       "send \"n\\r\"",
       "expect \"y/e/d>\"",
@@ -142,11 +141,14 @@ elif menuResult == "dataloggingKiosk":
     
     expectFile.close()
     os.system("su pi -c \"expect rclone.expect\"")
-    #os.system("rm rclone.expect")
+    os.system("rm rclone.expect")
     
   print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
   autorunFile = open("/home/pi/autorun.sh", "w")
-  autorunFile.write("sleep 10\n")
-  autorunFile.write("curl -L -s \"https://drive.google.com/uc?export=download&id=1UxZMVK_YfD_B2fC_XlGfPaIKeV9T6yVp\" | python3\n")
+  autorunFile.write("\n".join([
+    "sleep 10",
+    "/usr/bin/rclone mount --allow-non-empty --allow-other --vfs-cache-mode full --vfs-cache-max-age 999h --config=/home/pi/.config/rclone/rclone.conf Documents:Datalogging /home/pi/Documents > /tmp/rclone.log 2>&1 &",
+    "curl -L -s \"https://drive.google.com/uc?export=download&id=1UxZMVK_YfD_B2fC_XlGfPaIKeV9T6yVp\" | python3"
+  ]))
   autorunFile.close()
   setAutostart(["bash /home/pi/autorun.sh"])
