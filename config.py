@@ -110,36 +110,36 @@ elif menuResult == "dataloggingKiosk":
       "expect \"y/n>\"",
       "send \"n\\r\"",
       "expect \"y/e/d>\"",
-      "send \"y\\r\""
+      "send \"y\\r\"",
+      
+      "expect \"e/n/d/r/c/s/q>\"",
+      "send \"n\\r\"",
+      "expect \"name>\"",
+      "send \"Documents\\r\"",
+      "expect \"Storage>\"",
+      "send \"cache\\r\"",
+      "expect \"remote>\"",
+      "send \"drive:\\r\"",
+      "expect \"plex_url>\"",
+      "send \"\\r\"",
+      "expect \"plex_username>\"",
+      "send \"\\r\"",
+      "expect \"y/g/n>\"",
+      "send \"n\\r\"",
+      "expect \"chunk_size>\"",
+      "send \"10M\\r\"",
+      "expect \"info_age>\"",
+      "send \"1y\\r\"",
+      "expect \"chunk_total_size>\"",
+      "send \"1G\\r\"",
+      "expect \"y/n>\"",
+      "send \"n\\r\"",
+      "expect \"y/e/d>\"",
+      "send \"y\\r\"",
+      "expect \"e/n/d/r/c/s/q>\"",
+      "send \"q\\r\""
     ]))
     
-    #expectFile.write("expect \"e/n/d/r/c/s/q>\"\n")
-    #expectFile.write("send \"n\r\"\n")
-    #expectFile.write("expect \"name>\"\n")
-    #expectFile.write("send \"Documents\r\"\n")
-    #expectFile.write("expect \"Storage>\"\n")
-    #expectFile.write("send \"cache\r\"\n")
-    #expectFile.write("expect \"remote>\"\n")
-    #expectFile.write("send \"drive:\r\"\n")
-    #expectFile.write("expect \"plex_url>\"\n")
-    #expectFile.write("send \"\r\"\n")
-    #expectFile.write("expect \"plex_username>\"\n")
-    #expectFile.write("send \"\r\"\n")
-    #expectFile.write("expect \"y/g/n>\"\n")
-    #expectFile.write("send \"n\r\"\n")
-    #expectFile.write("expect \"chunk_size>\"\n")
-    #expectFile.write("send \"10M\r\"\n")
-    #expectFile.write("expect \"info_age>\"\n")
-    #expectFile.write("send \"1y\r\"\n")
-    #expectFile.write("expect \"chunk_total_size>\"\n")
-    #expectFile.write("send \"1G\r\"\n")
-    #expectFile.write("expect \"y/n>\"\n")
-    #expectFile.write("send \"n\r\"\n")
-    #expectFile.write("expect \"y/e/d>\"\n")
-    #expectFile.write("send \"y\r\"\n")
-    #expectFile.write("expect \"e/n/d/r/c/s/q>\"\n")
-    #expectFile.write("send \"q\r\"\n")
-  
     expectFile.close()
     os.system("su pi -c \"expect rclone.expect\"")
     #os.system("rm rclone.expect")
