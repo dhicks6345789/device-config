@@ -106,13 +106,16 @@ elif menuResult == "dataloggingKiosk":
   expectFile.write("expect \"y/n>\"\n")
   expectFile.write("send \"y\r\"\n")
   
+  expectFile.write(chromiumPath + " http://127.0.0.1:53682/auth\n")
   #expectFile.write("expect -re {link: (.*?)\\\n}\n")
   #expectFile.write(chromiumPath + " $expect_out(1,string)\n")
   
+  expectFile.write("expect \"y/n>\"\n")
+  expectFile.write("send \"n\r\"\n")
+  expectFile.write("expect \"y/e/d>\"\n")
+  expectFile.write("send \"y\r\"\n")
+  
   expectFile.write("interact")
-  #expectFile.write("send \"n\r\"\n")
-  #expectFile.write("expect \"y/e/d>\"\n")
-  #expectFile.write("send \"y\r\"\n")
   
   #expectFile.write("expect \"e/n/d/r/c/s/q>\"\n")
   #expectFile.write("send \"n\r\"\n")
