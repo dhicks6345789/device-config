@@ -84,18 +84,19 @@ elif menuResult == "dataloggingKiosk":
     os.system("curl https://rclone.org/install.sh | bash")
   if not os.path.exists("/home/pi/.config/rclone/rclone.conf"):
     expectFile = open("rclone.expect", "w")
-    expectFile.write("spawn /usr/bin/rclone config\r\n")
-  
-    expectFile.write("expect \"n/s/q>\"\r\n")
-    expectFile.write("send \"n\r\"\r\n")
-    expectFile.write("expect \"name>\"\r\n")
-    expectFile.write("send \"drive\r\"\r\n")
-    expectFile.write("expect \"Storage>\"\r\n")
-    expectFile.write("send \"drive\r\"\r\n")
-    expectFile.write("expect \"client_id>\"\r\n")
-    expectFile.write("send \"556680234914-khamoi3j7tf3d723pe3n9u5ipvnlbsq5.apps.googleusercontent.com\r\"\r\n")
-    expectFile.write("expect \"client_secret>\"\r\n")
-    expectFile.write("send \"FZ-AFSv5AORIroYBf93fvS7v\r\"\r\n")
+    expectFile.write("\n".join([
+      "spawn /usr/bin/rclone config",
+      "expect \"n/s/q>\",
+      "send \"n\r\"
+    ]))
+    expectFile.write("expect \"name>\"\n")
+    expectFile.write("send \"drive\r\"\n")
+    expectFile.write("expect \"Storage>\"\n")
+    expectFile.write("send \"drive\r\"\n")
+    expectFile.write("expect \"client_id>\"\n")
+    expectFile.write("send \"556680234914-khamoi3j7tf3d723pe3n9u5ipvnlbsq5.apps.googleusercontent.com\r\"\n")
+    expectFile.write("expect \"client_secret>\"\n")
+    expectFile.write("send \"FZ-AFSv5AORIroYBf93fvS7v\r\"\n")
     expectFile.write("expect \"scope>\"\r\n")
     expectFile.write("send \"drive\r\"\r\n")
     expectFile.write("expect \"root_folder_id>\"\r\n")
