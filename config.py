@@ -104,9 +104,11 @@ elif menuResult == "dataloggingKiosk":
   expectFile.write("expect \"y/n>\"\n")
   expectFile.write("send \"n\r\"\n")
   expectFile.write("expect \"y/n>\"\n")
-  expectFile.write("send \"n\r\"\n")
-  expectFile.write("expect -re {link: (.*?)\\\n}\n")
-  expectFile.write("send $expect_out(1,string)\n")
+  expectFile.write("send \"y\r\"\n")
+  
+  #expectFile.write("expect -re {link: (.*?)\\\n}\n")
+  #expectFile.write(chromiumPath + " $expect_out(1,string)\n")
+  
   expectFile.write("interact")
   #expectFile.write("send \"n\r\"\n")
   #expectFile.write("expect \"y/e/d>\"\n")
