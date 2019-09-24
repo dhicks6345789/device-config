@@ -97,7 +97,7 @@ elif menuResult == "dataloggingKiosk":
   expectFile.write("\n")
   expectFile.write("\n")
   expectFile.close()
-  os.syste("expect rclone.expect")
+  os.system("expect rclone.expect")
   #os.system("rm rclone.expect")
   print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
   autorunFile = open("/home/pi/autorun.sh", "w")
