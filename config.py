@@ -147,7 +147,7 @@ elif menuResult == "dataloggingKiosk":
   autorunFile = open("/home/pi/autorun.sh", "w")
   autorunFile.write("\n".join([
     "sleep 10",
-    "/usr/bin/rclone mount --allow-non-empty --allow-other --vfs-cache-mode full --vfs-cache-max-age 999h --config=/home/pi/.config/rclone/rclone.conf Documents:Datalogging /home/pi/Documents > /tmp/rclone.log 2>&1 &",
+    "/usr/bin/rclone mount --allow-non-empty --vfs-cache-mode full --vfs-cache-max-age 999h --config=/home/pi/.config/rclone/rclone.conf Documents:Datalogging /home/pi/Documents > /tmp/rclone.log 2>&1 &",
     "curl -L -s \"https://drive.google.com/uc?export=download&id=1UxZMVK_YfD_B2fC_XlGfPaIKeV9T6yVp\" | python3"
   ]))
   autorunFile.close()
