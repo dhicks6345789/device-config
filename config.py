@@ -86,8 +86,8 @@ elif menuResult == "dataloggingKiosk":
     expectFile = open("rclone.expect", "w")
     expectFile.write("\n".join([
       "spawn /usr/bin/rclone config",
-      "expect \"n/s/q>\",
-      "send \"n\r\"
+      "expect \"n/s/q>\"",
+      "send \"n\r\""
     ]))
     expectFile.write("expect \"name>\"\n")
     expectFile.write("send \"drive\r\"\n")
