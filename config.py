@@ -78,11 +78,13 @@ elif menuResult == "dataloggingKiosk":
     os.system("dpkg -i libpng12-0.deb")
     os.system("dpkg -i /home/pi/device-config/SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-sensorlab_1.1-0_i386.deb")
     os.system("dpkg -i /home/pi/device-config/SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-usbrules_1.1-0_all.deb")
-  if not os.path.exists("expect"):
+  if not os.path.exists("/usr/bin/expect"):
     os.system("apt-get -y install expect")
-  if not os.path.exists("/usr/local/bin/rclone"):
+  if not os.path.exists("/usr/bin/rclone"):
     os.system("curl https://rclone.org/install.sh | bash")
-  print(" - Set up rclone")
+  expectFile = open("rclone.expect", "w")
+  expectFile.write("\n")
+  expectFile.close()
   print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
   autorunFile = open("/home/pi/autorun.sh", "w")
   autorunFile.write("sleep 10\n")
