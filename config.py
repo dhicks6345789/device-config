@@ -87,38 +87,32 @@ elif menuResult == "dataloggingKiosk":
     expectFile.write("\n".join([
       "spawn /usr/bin/rclone config",
       "expect \"n/s/q>\"",
-      "send \"n\r\""
+      "send \"n\\r\"",
+      "expect \"name>\"",
+      "send \"drive\\r\"",
+      "expect \"Storage>\"",
+      "send \"drive\\r\"",
+      "expect \"client_id>\"",
+      "send \"556680234914-khamoi3j7tf3d723pe3n9u5ipvnlbsq5.apps.googleusercontent.com\\r\"",
+      "expect \"client_secret>\"",
+      "send \"FZ-AFSv5AORIroYBf93fvS7v\\r\"",
+      "expect \"scope>\"",
+      "send \"drive\\r\"",
+      "expect \"root_folder_id>\"",
+      "send \"\\r\"",
+      "expect \"service_account_file>\"",
+      "send \"\\r\"",
+      "expect \"y/n>\"",
+      "send \"n\\r\"",
+      "expect \"y/n>\"",
+      "send \"y\\r\"",
+      chromiumPath + " http://127.0.0.1:53682/auth",
+      "interact"
     ]))
-    expectFile.write("expect \"name>\"\n")
-    expectFile.write("send \"drive\r\"\n")
-    expectFile.write("expect \"Storage>\"\n")
-    expectFile.write("send \"drive\r\"\n")
-    expectFile.write("expect \"client_id>\"\n")
-    expectFile.write("send \"556680234914-khamoi3j7tf3d723pe3n9u5ipvnlbsq5.apps.googleusercontent.com\r\"\n")
-    expectFile.write("expect \"client_secret>\"\n")
-    expectFile.write("send \"FZ-AFSv5AORIroYBf93fvS7v\r\"\n")
-    expectFile.write("expect \"scope>\"\r\n")
-    expectFile.write("send \"drive\r\"\r\n")
-    expectFile.write("expect \"root_folder_id>\"\r\n")
-    expectFile.write("send \"\r\"\r\n")
-    expectFile.write("expect \"service_account_file>\"\r\n")
-    expectFile.write("send \"\r\"\r\n")
-    expectFile.write("expect \"y/n>\"\r\n")
-    expectFile.write("send \"n\r\"\r\n")
-    expectFile.write("expect \"y/n>\"\r\n")
-    expectFile.write("send \"y\r\"\r\n")
   
-    expectFile.write(chromiumPath + " http://127.0.0.1:53682/auth\r\n")
     #expectFile.write("expect -re {link: (.*?)\\\n}\n")
     #expectFile.write(chromiumPath + " $expect_out(1,string)\n")
-  
-    expectFile.write("expect \"y/n>\"\r\n")
-    expectFile.write("send \"n\r\"\r\n")
-    expectFile.write("expect \"y/e/d>\"\r\n")
-    expectFile.write("send \"y\r\"\r\n")
-  
-    expectFile.write("interact")
-  
+    
     #expectFile.write("expect \"e/n/d/r/c/s/q>\"\n")
     #expectFile.write("send \"n\r\"\n")
     #expectFile.write("expect \"name>\"\n")
