@@ -68,7 +68,7 @@ elif menuResult == "govukJekyll":
 elif menuResult == "dataloggingKiosk":
   print("Configuring system as a Science Datalogging Kiosk...")
   if not os.uname == newHostname:
-    os.system("sudo hostname " + newHostname)
+    os.system("echo " + newHostname + " > /etc/hostname")
   removeGrubBootTimeout()
   if not os.path.exists("linuxSensorlab.zip"):
     os.system("curl -s -o linuxSensorlab.zip \"http://ccgi.dcpmicro.plus.com/dcplogit/files/software/linuxSensorlab.zip\"")
