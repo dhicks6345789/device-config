@@ -147,7 +147,7 @@ elif menuResult == "dataloggingKiosk":
     os.system("rm rclone.expect")
     
   print("Set up process to move any files we find stored in the local /home/pi folder to the mounted network /home/pi/Documents folder.")
-  os.system("curl -L -s -o moveFiles.py \"https://drive.google.com/uc?export=download&id=1PpFJIwShCxy3O--jaKEGQyjzHlr0xclA\"")
+  os.system("curl -L -s -o /home/pi/moveFiles.py \"https://drive.google.com/uc?export=download&id=1PpFJIwShCxy3O--jaKEGQyjzHlr0xclA\"")
     
   print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
   autorunFile = open("/home/pi/autorun.sh", "w")
