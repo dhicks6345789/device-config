@@ -58,14 +58,17 @@ def removeGrubBootTimeout():
     
 def configRclone():
   print("Configuring rclone...")
-    
+  
 menuResult = displayMenu(menu)
+newHostname = input("Hostname: ")
 if menuResult == "pythonHugo":
   print("Configuring system with Python and Hugo...")
 elif menuResult == "govukJekyll":
   print("Configuring system with the GOV.UK Jekyll environment...")
 elif menuResult == "dataloggingKiosk":
   print("Configuring system as a Science Datalogging Kiosk...")
+  if not os.uname == newHostname:
+    os.system("sudo hostname " + newHostname)
   removeGrubBootTimeout()
   if not os.path.exists("linuxSensorlab.zip"):
     os.system("curl -s -o linuxSensorlab.zip \"http://ccgi.dcpmicro.plus.com/dcplogit/files/software/linuxSensorlab.zip\"")
