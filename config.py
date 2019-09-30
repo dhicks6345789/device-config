@@ -32,13 +32,13 @@ def displayMenu(theMenu):
 
 def setAutostart(autostartLines):
   print("Re-writing GUI Autostart file.")
-  configHandle = open("/etc/xdg/lxsession/LXDE-pi/autostart","w")
-  configHandle.write("xset s noblank\n")
-  configHandle.write("xset s off\n")
-  configHandle.write("xset -dpms\n")
-  configHandle.write("point-rpi\n")
-  for autostartLine in autostartLines:
-      configHandle.write(autostartLine + "\n")
+  outputArray = [
+    "xset s noblank"
+    "xset s off"
+    "xset -dpms"
+    "point-rpi"
+  ].extend(autostartLines)
+  writeFileFromArray("/etc/xdg/lxsession/LXDE-pi/autostart", outputArray)
   #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
   #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
   configHandle.close()
@@ -56,10 +56,13 @@ def removeGrubBootTimeout():
     configHandle.write(configString)
     configHandle.close()
     
+def writeFileFromArray(theFilename, theArray):
+  outputFile = open(theFilename, "w")
+  outputFile.write("\n".join(theArray))
+  outputFile.close()
+    
 def runExpect(inputArray):
-  expectFile = open("temp.expect", "w")
-  expectFile.write("\n".join(inputArray))
-  expectFile.close()
+  writeFileFromArray("temp.expect", inputArray)
   os.system("su pi -c \"expect temp.expect\"")
   os.system("rm temp.expect")
   
@@ -159,12 +162,10 @@ elif menuResult == "dataloggingKiosk":
   os.system("curl -L -s -o /home/pi/moveFiles.py \"https://drive.google.com/uc?export=download&id=1PpFJIwShCxy3O--jaKEGQyjzHlr0xclA\"")
     
   print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
-  autorunFile = open("/home/pi/autorun.sh", "w")
-  autorunFile.write("\n".join([
+  writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 10",
     "/usr/bin/rclone mount --allow-non-empty --vfs-cache-mode full --vfs-cache-max-age 999h --config=/home/pi/.config/rclone/rclone.conf Documents:Datalogging/" + newHostname + " /home/pi/Documents > /tmp/rclone.log 2>&1 &",
     "python3 /home/pi/moveFiles.py &",
     "curl -L -s \"https://drive.google.com/uc?export=download&id=1UxZMVK_YfD_B2fC_XlGfPaIKeV9T6yVp\" | python3"
-  ]))
-  autorunFile.close()
+  ])
   setAutostart(["bash /home/pi/autorun.sh"])
