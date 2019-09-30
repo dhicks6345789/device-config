@@ -140,7 +140,8 @@ elif menuResult == "dataloggingKiosk":
   if not os.uname == newHostname:
     os.system("echo " + newHostname + " > /etc/hostname")
   removeGrubBootTimeout()
-  if not os.path.exists("linuxSensorlab.zip"):
+  if not os.path.exists("/usr/share/sccresearch-sensorlab"):
+    print("Installing SensorLab...")
     os.system("curl -s -o linuxSensorlab.zip \"http://ccgi.dcpmicro.plus.com/dcplogit/files/software/linuxSensorlab.zip\"")
     os.system("unzip linuxSensorlab.zip")
     os.system("gunzip SensorLab\ 1-1-0\ for\ Linux.tgz")
