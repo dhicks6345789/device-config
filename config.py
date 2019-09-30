@@ -11,6 +11,9 @@ if os.path.exists("/usr/bin/chromium"):
 elif os.path.exists("/usr/bin/chromium-browser"):
   chromiumPath = "/usr/bin/chromium-browser"
 
+#configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
+#configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
+  
 menu = collections.OrderedDict()
 menu["Server Environments"] = collections.OrderedDict()
 menu["Server Environments"]["Python with Hugo"] = "pythonHugo"
@@ -38,10 +41,7 @@ def setAutostart(autostartLines):
     "xset -dpms"
     "point-rpi"
   ] + autostartLines)
-  #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
-  #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
-  configHandle.close()
-
+  
 def removeGrubBootTimeout():
   if os.path.exists("/boot/grub/grub.cfg"):
     print("Removing boot timeout from grub.cfg.")
