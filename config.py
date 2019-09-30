@@ -163,6 +163,7 @@ elif menuResult == "dataloggingKiosk":
     
   print("Set boot process to hand over to web-editable script (owned by the datalogging user) to run logging software, Chrome, or anything else needed.")
   writeFileFromArray("/home/pi/autorun.sh", [
+    #"sudo service ntp stop; sudo ntpdate -s uk.pool.ntp.org; sudo service ntp start",
     "sleep 10",
     "/usr/bin/rclone mount --allow-non-empty --vfs-cache-mode full --vfs-cache-max-age 999h --config=/home/pi/.config/rclone/rclone.conf Documents:Datalogging/" + newHostname + " /home/pi/Documents > /tmp/rclone.log 2>&1 &",
     "python3 /home/pi/moveFiles.py &",
