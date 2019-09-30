@@ -56,42 +56,23 @@ def removeGrubBootTimeout():
     configHandle.write(configString)
     configHandle.close()
     
-def configRclone():
-  print("Configuring rclone...")
+def runExpect(inputArray):
+  expectFile = open("temp.expect", "w")
+  expectFile.write("\n".join(inputArray))
+  expectFile.close()
+  os.system("su pi -c \"expect temp.expect\"")
+  os.system("rm temp.expect")
   
-menuResult = displayMenu(menu)
-newHostname = input("Hostname: ")
-if menuResult == "pythonHugo":
-  print("Configuring system with Python and Hugo...")
-elif menuResult == "govukJekyll":
-  print("Configuring system with the GOV.UK Jekyll environment...")
-elif menuResult == "dataloggingKiosk":
-  print("Configuring system as a Science Datalogging Kiosk...")
-  if not os.uname == newHostname:
-    os.system("echo " + newHostname + " > /etc/hostname")
-  removeGrubBootTimeout()
-  if not os.path.exists("linuxSensorlab.zip"):
-    os.system("curl -s -o linuxSensorlab.zip \"http://ccgi.dcpmicro.plus.com/dcplogit/files/software/linuxSensorlab.zip\"")
-    os.system("unzip linuxSensorlab.zip")
-    os.system("gunzip SensorLab\ 1-1-0\ for\ Linux.tgz")
-    os.system("tar xf SensorLab\ 1-1-0\ for\ Linux.tar")
-    os.system("apt-get install -y libpangox-1.0-0")
-    os.system("apt-get install -y libpango1.0-0")
-    os.system("curl -s -o libpng12-0.deb \"http://ftp.uk.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_i386.deb\"")
-    os.system("dpkg -i libpng12-0.deb")
-    os.system("dpkg -i SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-sensorlab_1.1-0_i386.deb")
-    os.system("dpkg -i SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-usbrules_1.1-0_all.deb")
-    os.system("rm linuxSensorlab.zip")
-    os.system("rm libpng12-0.deb")
-    os.system("rm SensorLab\ 1-1-0\ for\ Linux.tar")
-    os.system("rm -rf SensorLab\ 1-1-0\ for\ Linux")
+def configRclone():
   if not os.path.exists("/usr/bin/expect"):
+    print("Installing Expect...")
     os.system("apt-get -y install expect")
   if not os.path.exists("/usr/bin/rclone"):
+    print("Installing rclone...")
     os.system("curl https://rclone.org/install.sh | bash")
   if not os.path.exists("/home/pi/.config/rclone/rclone.conf"):
-    expectFile = open("rclone.expect", "w")
-    expectFile.write("\n".join([
+    print("Configuring rclone...")
+    runExpect([
       "spawn /usr/bin/rclone config",
       "expect \"n/s/q>\"",
       "send \"n\\r\"",
@@ -144,12 +125,36 @@ elif menuResult == "dataloggingKiosk":
       "send \"y\\r\"",
       "expect \"e/n/d/r/c/s/q>\"",
       "send \"q\\r\""
-    ]))
-    
-    expectFile.close()
-    os.system("su pi -c \"expect rclone.expect\"")
-    os.system("rm rclone.expect")
-    
+    ])
+  
+menuResult = displayMenu(menu)
+newHostname = input("Hostname: ")
+if menuResult == "pythonHugo":
+  print("Configuring system with Python and Hugo...")
+elif menuResult == "govukJekyll":
+  print("Configuring system with the GOV.UK Jekyll environment...")
+elif menuResult == "dataloggingKiosk":
+  print("Configuring system as a Science Datalogging Kiosk...")
+  if not os.uname == newHostname:
+    os.system("echo " + newHostname + " > /etc/hostname")
+  removeGrubBootTimeout()
+  if not os.path.exists("linuxSensorlab.zip"):
+    os.system("curl -s -o linuxSensorlab.zip \"http://ccgi.dcpmicro.plus.com/dcplogit/files/software/linuxSensorlab.zip\"")
+    os.system("unzip linuxSensorlab.zip")
+    os.system("gunzip SensorLab\ 1-1-0\ for\ Linux.tgz")
+    os.system("tar xf SensorLab\ 1-1-0\ for\ Linux.tar")
+    os.system("apt-get install -y libpangox-1.0-0")
+    os.system("apt-get install -y libpango1.0-0")
+    os.system("curl -s -o libpng12-0.deb \"http://ftp.uk.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_i386.deb\"")
+    os.system("dpkg -i libpng12-0.deb")
+    os.system("dpkg -i SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-sensorlab_1.1-0_i386.deb")
+    os.system("dpkg -i SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-usbrules_1.1-0_all.deb")
+    os.system("rm linuxSensorlab.zip")
+    os.system("rm libpng12-0.deb")
+    os.system("rm SensorLab\ 1-1-0\ for\ Linux.tar")
+    os.system("rm -rf SensorLab\ 1-1-0\ for\ Linux")
+  configRclone()
+  
   print("Set up process to move any files we find stored in the local /home/pi folder to the mounted network /home/pi/Documents folder.")
   os.system("curl -L -s -o /home/pi/moveFiles.py \"https://drive.google.com/uc?export=download&id=1PpFJIwShCxy3O--jaKEGQyjzHlr0xclA\"")
     
