@@ -79,8 +79,12 @@ elif menuResult == "dataloggingKiosk":
     os.system("apt-get install -y libpango1.0-0")
     os.system("curl -s -o libpng12-0.deb \"http://ftp.uk.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_i386.deb\"")
     os.system("dpkg -i libpng12-0.deb")
-    os.system("dpkg -i /home/pi/device-config/SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-sensorlab_1.1-0_i386.deb")
-    os.system("dpkg -i /home/pi/device-config/SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-usbrules_1.1-0_all.deb")
+    os.system("dpkg -i SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-sensorlab_1.1-0_i386.deb")
+    os.system("dpkg -i SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-usbrules_1.1-0_all.deb")
+    os.system("rm linuxSensorlab.zip")
+    os.system("rm libpng12-0.deb")
+    os.system("rm SensorLab\ 1-1-0\ for\ Linux.tar")
+    os.system("rm -rf SensorLab\ 1-1-0\ for\ Linux")
   if not os.path.exists("/usr/bin/expect"):
     os.system("apt-get -y install expect")
   if not os.path.exists("/usr/bin/rclone"):
