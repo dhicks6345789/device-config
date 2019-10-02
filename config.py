@@ -145,7 +145,7 @@ elif menuResult == "webKisok":
   #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
 elif menuResult == "dataloggingMachine":
   print("Configuring system as a Datalogging Machine...")
-  print "Hostname: " + getSetting("Hostname")
+  print("Hostname: " + getSetting("Hostname"))
   if not os.uname == getSetting("Hostname"):
     os.system("echo " + getSetting("Hostname") + " > /etc/hostname")
   removeGrubBootTimeout()
