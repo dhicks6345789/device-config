@@ -180,4 +180,4 @@ elif menuResult == "dataloggingMachine":
   setAutostart(["bash /home/pi/autorun.sh"])
 elif menuResult == "browsingMachine":
   print("Configuring system as a Web Browsing Machine...")
-  print "Hostname: " + getSetting("Hostname")
+  print("Hostname: " + getSetting("Hostname"))
