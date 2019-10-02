@@ -189,6 +189,7 @@ elif menuResult == "webBrowsingMachine":
   setHostname()
   removeGrubBootTimeout()
   writeFileFromArray("/home/pi/autorun.sh", [
+    "sleep 10",
     "/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/staff > /dev/null 2>&1",
     "shutdown now"
   ])
