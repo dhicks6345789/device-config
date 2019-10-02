@@ -187,4 +187,4 @@ elif menuResult == "dataloggingMachine":
 elif menuResult == "webBrowsingMachine":
   print("Configuring system as a Web Browsing Machine...")
   getSetting("Hostname")
-  setAutostart([""])
+  setAutostart(["/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/staff > /dev/null 2>&1"])
