@@ -75,7 +75,7 @@ def runExpect(inputArray):
   os.system("su pi -c \"expect temp.expect\"")
   os.system("rm temp.expect")
   
-def installSensorLab()
+def installSensorLab():
   if not os.path.exists("/usr/share/sccresearch-sensorlab"):
     print("Installing SensorLab...")
     os.system("curl -s -o linuxSensorlab.zip \"http://ccgi.dcpmicro.plus.com/dcplogit/files/software/linuxSensorlab.zip\"")
