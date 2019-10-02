@@ -5,6 +5,8 @@ import os
 import sys
 import collections
 
+settings = {}
+
 chromiumPath = ""
 if os.path.exists("/usr/bin/chromium"):
   chromiumPath = "/usr/bin/chromium"
@@ -19,6 +21,11 @@ menu["Client Environments"] = collections.OrderedDict()
 menu["Client Environments"]["Web-based Kiosk"] = "webKiosk"
 menu["Client Environments"]["Datalogging Machine"] = "dataloggingMachine"
 menu["Client Environments"]["Web Browsing Machine"] = "browsingMachine"
+
+def getSetting(theSetting):
+  if not theSetting in settings.keys():
+    settings[theSetting] = input(theSetting + ": ")
+  return(settings[theSetting])
 
 def displayMenu(theMenu):
   currentItem = 1
@@ -128,7 +135,6 @@ def configRclone():
     ])
   
 menuResult = displayMenu(menu)
-newHostname = input("Hostname: ")
 if menuResult == "pythonHugo":
   print("Configuring system with Python and Hugo...")
 elif menuResult == "govukJekyll":
@@ -139,8 +145,9 @@ elif menuResult == "webKisok":
   #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
 elif menuResult == "dataloggingMachine":
   print("Configuring system as a Datalogging Machine...")
-  if not os.uname == newHostname:
-    os.system("echo " + newHostname + " > /etc/hostname")
+  print "Hostname: " + getSetting("Hostname")
+  if not os.uname == getSetting("Hostname"):
+    os.system("echo " + getSetting("Hostname") + " > /etc/hostname")
   removeGrubBootTimeout()
   if not os.path.exists("/usr/share/sccresearch-sensorlab"):
     print("Installing SensorLab...")
@@ -173,4 +180,4 @@ elif menuResult == "dataloggingMachine":
   setAutostart(["bash /home/pi/autorun.sh"])
 elif menuResult == "browsingMachine":
   print("Configuring system as a Web Browsing Machine...")
-  
+  print "Hostname: " + getSetting("Hostname")
