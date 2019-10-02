@@ -10,9 +10,6 @@ if os.path.exists("/usr/bin/chromium"):
   chromiumPath = "/usr/bin/chromium"
 elif os.path.exists("/usr/bin/chromium-browser"):
   chromiumPath = "/usr/bin/chromium-browser"
-
-#configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
-#configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
   
 menu = collections.OrderedDict()
 menu["Server Environments"] = collections.OrderedDict()
@@ -20,7 +17,8 @@ menu["Server Environments"]["Python with Hugo"] = "pythonHugo"
 menu["Server Environments"]["GOV.UK / Jekyll"] = "govukJekyll"
 menu["Client Environments"] = collections.OrderedDict()
 menu["Client Environments"]["Web-based Kiosk"] = "webKiosk"
-menu["Client Environments"]["Science Datalogging Kiosk"] = "dataloggingKiosk"
+menu["Client Environments"]["Datalogging Machine"] = "dataloggingMachine"
+menu["Client Environments"]["Web Browsing Machine"] = "browsingMachine"
 
 def displayMenu(theMenu):
   currentItem = 1
@@ -135,8 +133,12 @@ if menuResult == "pythonHugo":
   print("Configuring system with Python and Hugo...")
 elif menuResult == "govukJekyll":
   print("Configuring system with the GOV.UK Jekyll environment...")
-elif menuResult == "dataloggingKiosk":
-  print("Configuring system as a Science Datalogging Kiosk...")
+elif menuResult == "webKisok":
+  print("Configuring system as a Web Kiosk...")
+  #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
+  #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
+elif menuResult == "dataloggingMachine":
+  print("Configuring system as a Datalogging Machine...")
   if not os.uname == newHostname:
     os.system("echo " + newHostname + " > /etc/hostname")
   removeGrubBootTimeout()
@@ -169,3 +171,6 @@ elif menuResult == "dataloggingKiosk":
     "curl -L -s \"https://drive.google.com/uc?export=download&id=1UxZMVK_YfD_B2fC_XlGfPaIKeV9T6yVp\" | python3"
   ])
   setAutostart(["bash /home/pi/autorun.sh"])
+elif menuResult == "browsingMachine":
+  print("Configuring system as a Web Browsing Machine...")
+  
