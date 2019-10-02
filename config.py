@@ -27,6 +27,11 @@ def getSetting(theSetting):
     settings[theSetting] = input(theSetting + ": ")
   return(settings[theSetting])
 
+def setHostname():
+  getSetting("Hostname")
+  if not os.uname == getSetting("Hostname"):
+    os.system("echo " + getSetting("Hostname") + " > /etc/hostname")
+    
 def displayMenu(theMenu):
   currentItem = 1
   for menuItem in theMenu.keys():
@@ -70,6 +75,24 @@ def runExpect(inputArray):
   os.system("su pi -c \"expect temp.expect\"")
   os.system("rm temp.expect")
   
+def installSensorLab()
+  if not os.path.exists("/usr/share/sccresearch-sensorlab"):
+    print("Installing SensorLab...")
+    os.system("curl -s -o linuxSensorlab.zip \"http://ccgi.dcpmicro.plus.com/dcplogit/files/software/linuxSensorlab.zip\"")
+    os.system("unzip linuxSensorlab.zip")
+    os.system("gunzip SensorLab\ 1-1-0\ for\ Linux.tgz")
+    os.system("tar xf SensorLab\ 1-1-0\ for\ Linux.tar")
+    os.system("apt-get install -y libpangox-1.0-0")
+    os.system("apt-get install -y libpango1.0-0")
+    os.system("curl -s -o libpng12-0.deb \"http://ftp.uk.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_i386.deb\"")
+    os.system("dpkg -i libpng12-0.deb")
+    os.system("dpkg -i SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-sensorlab_1.1-0_i386.deb")
+    os.system("dpkg -i SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-usbrules_1.1-0_all.deb")
+    os.system("rm linuxSensorlab.zip")
+    os.system("rm libpng12-0.deb")
+    os.system("rm SensorLab\ 1-1-0\ for\ Linux.tar")
+    os.system("rm -rf SensorLab\ 1-1-0\ for\ Linux")
+    
 def configRclone():
   if not os.path.exists("/usr/bin/expect"):
     print("Installing Expect...")
@@ -145,26 +168,9 @@ elif menuResult == "webKisok":
   #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
 elif menuResult == "dataloggingMachine":
   print("Configuring system as a Datalogging Machine...")
-  getSetting("Hostname")
-  if not os.uname == getSetting("Hostname"):
-    os.system("echo " + getSetting("Hostname") + " > /etc/hostname")
+  setHostname()
   removeGrubBootTimeout()
-  if not os.path.exists("/usr/share/sccresearch-sensorlab"):
-    print("Installing SensorLab...")
-    os.system("curl -s -o linuxSensorlab.zip \"http://ccgi.dcpmicro.plus.com/dcplogit/files/software/linuxSensorlab.zip\"")
-    os.system("unzip linuxSensorlab.zip")
-    os.system("gunzip SensorLab\ 1-1-0\ for\ Linux.tgz")
-    os.system("tar xf SensorLab\ 1-1-0\ for\ Linux.tar")
-    os.system("apt-get install -y libpangox-1.0-0")
-    os.system("apt-get install -y libpango1.0-0")
-    os.system("curl -s -o libpng12-0.deb \"http://ftp.uk.debian.org/debian/pool/main/libp/libpng/libpng12-0_1.2.50-2+deb8u3_i386.deb\"")
-    os.system("dpkg -i libpng12-0.deb")
-    os.system("dpkg -i SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-sensorlab_1.1-0_i386.deb")
-    os.system("dpkg -i SensorLab\ 1-1-0\ for\ Linux/Installer/sccresearch-usbrules_1.1-0_all.deb")
-    os.system("rm linuxSensorlab.zip")
-    os.system("rm libpng12-0.deb")
-    os.system("rm SensorLab\ 1-1-0\ for\ Linux.tar")
-    os.system("rm -rf SensorLab\ 1-1-0\ for\ Linux")
+  installSensorLab()
   configRclone()
   
   print("Set up process to move any files we find stored in the local /home/pi folder to the mounted network /home/pi/Documents folder.")
@@ -181,3 +187,4 @@ elif menuResult == "dataloggingMachine":
 elif menuResult == "webBrowsingMachine":
   print("Configuring system as a Web Browsing Machine...")
   getSetting("Hostname")
+  setAutostart([""])
