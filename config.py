@@ -188,4 +188,4 @@ elif menuResult == "webBrowsingMachine":
   print("Configuring system as a Web Browsing Machine...")
   setHostname()
   removeGrubBootTimeout()
-  setAutostart(["/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/staff > /dev/null 2>&1; shutdown now"])
+  setAutostart(["\"/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/staff\" > /dev/null 2>&1; shutdown now"])
