@@ -2,7 +2,10 @@
 A script to set up a specific development / runtime environment on a Operating System - the target might be a VM or a physical device. Made with the setup of dedicated thin client / kiosk devices in mind.
 
 ## Installation
+You can download directly from Github:
+'''
 curl -s https://raw.githubusercontent.com/dhicks6345789/device-config/master/config.py > config.py; sudo python3 config.py; rm config.py
+'''
 
 ## Notes
 * Python with Hugo run environment
