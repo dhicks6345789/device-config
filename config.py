@@ -43,6 +43,16 @@ def displayMenu(theMenu):
     return(displayMenu(selectedOption))
   return(selectedOption)
 
+def replaceStringsInFile(theFilename, theReplaceArray):
+  textFile = open(theFilename, encoding="latin-1")
+  textFileContents = textFile.read()
+  textFile.close()
+  for findValue in theReplaceArray.keys():
+    textFileContents.replace(findValue, theReplaceArray[findValue])
+  textFile = open(theFilename, "w")
+  textFile.write(textFileContents)
+  textFile.close()
+
 def setAutostart(autostartLines):
   print("Re-writing GUI Autostart file.")
   writeFileFromArray("/etc/xdg/lxsession/LXDE-pi/autostart", [
