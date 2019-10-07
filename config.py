@@ -193,4 +193,5 @@ elif menuResult == "webBrowsingMachine":
     "/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/staff > /dev/null 2>&1",
     "shutdown now"
   ])
+  replaceStringsInFile("/home/pi/.config/chromium/Default/Preferences", {"\"popups\":{}":"\"popups\":{\"knightsbridgeschool.isams.cloud,*\":{\"last_modified\":\"13214925214214283\",\"setting\":1}":""})
   setAutostart(["bash /home/pi/autorun.sh"])
