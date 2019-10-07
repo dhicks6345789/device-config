@@ -48,7 +48,7 @@ def replaceStringsInFile(theFilename, theReplaceArray):
   textFileContents = textFile.read()
   textFile.close()
   for findValue in theReplaceArray.keys():
-    textFileContents.replace(findValue, theReplaceArray[findValue])
+    textFileContents = textFileContents.replace(findValue, theReplaceArray[findValue])
   textFile = open(theFilename, "w")
   textFile.write(textFileContents)
   textFile.close()
