@@ -53,6 +53,9 @@ def replaceStringsInFile(theFilename, theReplaceArray):
   textFile.write(textFileContents)
   textFile.close()
 
+def setAllowedPopupURLs():
+  replaceStringsInFile("/home/pi/.config/chromium/Default/Preferences", {"\"popups\":{}":"\"popups\":{\"knightsbridgeschool.isams.cloud,*\":{\"last_modified\":\"13214925214214283\",\"setting\":1}}"})
+  
 def setAutostart(autostartLines):
   print("Re-writing GUI Autostart file.")
   writeFileFromArray("/etc/xdg/lxsession/LXDE-pi/autostart", [
@@ -198,10 +201,10 @@ elif menuResult == "webBrowsingMachine":
   print("Configuring system as a Web Browsing Machine...")
   setHostname()
   removeGrubBootTimeout()
+  setAllowedPopupURLs()
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 10",
     "/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/staff > /dev/null 2>&1",
     "shutdown now"
   ])
-  replaceStringsInFile("/home/pi/.config/chromium/Default/Preferences", {"\"popups\":{}":"\"popups\":{\"knightsbridgeschool.isams.cloud,*\":{\"last_modified\":\"13214925214214283\",\"setting\":1}}"})
   setAutostart(["bash /home/pi/autorun.sh"])
