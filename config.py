@@ -209,7 +209,7 @@ elif menuResult == "webBrowsingMachine":
     "shutdown now"
   ])
   setAutostart(["bash /home/pi/autorun.sh"])
-elif menuResult == "webBrowsingMachine":
+elif menuResult == "examClock":
   print("Configuring system as an Exam Clock...")
   removeGrubBootTimeout()
   #setAllowedPopupURLs()
