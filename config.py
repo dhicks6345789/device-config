@@ -125,9 +125,9 @@ def configRclone():
       "expect \"Storage>\"",
       "send \"drive\\r\"",
       "expect \"client_id>\"",
-      "send \"556680234914-khamoi3j7tf3d723pe3n9u5ipvnlbsq5.apps.googleusercontent.com\\r\"",
+      "send \".apps.googleusercontent.com\\r\"",
       "expect \"client_secret>\"",
-      "send \"FZ-AFSv5AORIroYBf93fvS7v\\r\"",
+      "send \"\\r\"",
       "expect \"scope>\"",
       "send \"drive\\r\"",
       "expect \"root_folder_id>\"",
@@ -178,8 +178,7 @@ elif menuResult == "govukJekyll":
   print("Configuring system with the GOV.UK Jekyll environment...")
 elif menuResult == "webKisok":
   print("Configuring system as a Web Kiosk...")
-  #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk https://remote.knightsbridgeschool.com\n")
-  #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --start-fullscreen https://docs.google.com/presentation/d/e/2PACX-1vRstVVaPRpKUAgmU-IIwk4ywY_pzhqynhMqG7BJY8ya4tf_82G01RZL1TqVcLVCBI2xkfYL-oLLUyxB/pub?start=true&loop=true&delayms=6000\n")
+  #configHandle.write(chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk https://something.example.com\n")
 elif menuResult == "dataloggingMachine":
   print("Configuring system as a Datalogging Machine...")
   setHostname()
@@ -205,17 +204,17 @@ elif menuResult == "webBrowsingMachine":
   setAllowedPopupURLs()
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 10",
-    "/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/staff > /dev/null 2>&1",
+    "/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://" + "URLGOESHERE" + " > /dev/null 2>&1",
     "shutdown now"
   ])
   setAutostart(["bash /home/pi/autorun.sh"])
 elif menuResult == "examClock":
   print("Configuring system as an Exam Clock...")
   removeGrubBootTimeout()
+  os.system("apt-get install -y dclock")
   #setAllowedPopupURLs()
   #writeFileFromArray("/home/pi/autorun.sh", [
     #"sleep 10",
-    #"/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/staff > /dev/null 2>&1",
     #"shutdown now"
   #])
   #setAutostart(["bash /home/pi/autorun.sh"])
