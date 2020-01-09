@@ -221,3 +221,4 @@ elif menuResult == "examClock":
     "xdotool search --name dclock windowactivate -sync; wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
   ])
   setAutostart(["bash /home/pi/autorun.sh"])
+  os.system("reboot")
