@@ -214,9 +214,10 @@ elif menuResult == "examClock":
   os.system("apt-get install -y dclock")
   os.system("apt-get install -y xdotool")
   os.system("apt-get install -y wmctrl")
-  #setAllowedPopupURLs()
-  #writeFileFromArray("/home/pi/autorun.sh", [
-    #"sleep 10",
-    #"shutdown now"
-  #])
-  #setAutostart(["bash /home/pi/autorun.sh"])
+  writeFileFromArray("/home/pi/autorun.sh", [
+    "sleep 10",
+    "dclock -seconds -noblink -bg black -led_off black &",
+    "xdotool search --name dclock windowactivate -sync",
+    "wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
+  ])
+  setAutostart(["bash /home/pi/autorun.sh"])
