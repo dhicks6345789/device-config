@@ -212,6 +212,7 @@ elif menuResult == "examClock":
   print("Configuring system as an Exam Clock...")
   removeGrubBootTimeout()
   os.system("apt-get install -y dclock")
+  os.system("apt-get install -y xdotool")
   #setAllowedPopupURLs()
   #writeFileFromArray("/home/pi/autorun.sh", [
     #"sleep 10",
