@@ -21,6 +21,7 @@ menu["Client Environments"] = collections.OrderedDict()
 menu["Client Environments"]["Web-based Kiosk"] = "webKiosk"
 menu["Client Environments"]["Datalogging Machine"] = "dataloggingMachine"
 menu["Client Environments"]["Web Browsing Machine"] = "webBrowsingMachine"
+menu["Client Environments"]["Exam Clock"] = "examClock"
 
 def getSetting(theSetting):
   if not theSetting in settings.keys():
@@ -208,3 +209,13 @@ elif menuResult == "webBrowsingMachine":
     "shutdown now"
   ])
   setAutostart(["bash /home/pi/autorun.sh"])
+elif menuResult == "webBrowsingMachine":
+  print("Configuring system as an Exam Clock...")
+  removeGrubBootTimeout()
+  #setAllowedPopupURLs()
+  #writeFileFromArray("/home/pi/autorun.sh", [
+    #"sleep 10",
+    #"/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://sites.google.com/knightsbridgeschool.com/staff > /dev/null 2>&1",
+    #"shutdown now"
+  #])
+  #setAutostart(["bash /home/pi/autorun.sh"])
