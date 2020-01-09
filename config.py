@@ -216,7 +216,7 @@ elif menuResult == "examClock":
   os.system("apt-get install -y wmctrl")
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 4",
-    "dclock -seconds -noblink -bg black -led_off black &",
+    "(dclock -seconds -noblink -bg black -led_off black; shutdown now) &",
     "sleep 4",
     "xdotool search --name dclock windowactivate -sync; wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
   ])
