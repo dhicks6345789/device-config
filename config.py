@@ -211,6 +211,7 @@ elif menuResult == "webBrowsingMachine":
     restartOrShutdown = "reboot"
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 4",
+    "amixer cset numid=3 1",
     chromiumPath + " --incognito --start-maximized --no-default-browser-check " + URL + " > /dev/null 2>&1",
     restartOrShutdown
   ])
