@@ -202,9 +202,10 @@ elif menuResult == "webBrowsingMachine":
   setHostname()
   removeGrubBootTimeout()
   setAllowedPopupURLs()
+  URL = getSetting("URL")
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 10",
-    "/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://" + "URLGOESHERE" + " > /dev/null 2>&1",
+    "/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://" + URL + " > /dev/null 2>&1",
     "shutdown now"
   ])
   setAutostart(["bash /home/pi/autorun.sh"])
