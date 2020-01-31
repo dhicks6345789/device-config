@@ -203,6 +203,12 @@ elif menuResult == "webBrowsingMachine":
   removeGrubBootTimeout()
   setAllowedPopupURLs()
   URL = getSetting("URL")
+  print("Shutdown (s) or restart (r)?")
+  restartOrShutdown = getSetting("restartOrShutdown")
+  if restartOrShutdown == "s":
+    restartOrShutdown = "shutdown now"
+  else:
+    restartOrShutdown = "restart"
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 10",
     "/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://" + URL + " > /dev/null 2>&1",
