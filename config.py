@@ -208,11 +208,11 @@ elif menuResult == "webBrowsingMachine":
   if restartOrShutdown == "s":
     restartOrShutdown = "shutdown now"
   else:
-    restartOrShutdown = "restart"
+    restartOrShutdown = "reboot"
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 10",
     "/usr/bin/chromium --incognito --start-maximized --no-default-browser-check https://" + URL + " > /dev/null 2>&1",
-    "shutdown now"
+    restartOrShutdown
   ])
   setAutostart(["bash /home/pi/autorun.sh"])
 elif menuResult == "examClock":
