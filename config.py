@@ -207,7 +207,7 @@ elif menuResult == "webBrowsingMachine":
   print("Load browser in kiosk (k) mode or not (n)?")
   kiosk = getSetting("kiosk")
   if kiosk == "k":
-    kiosk = " --kiosk"
+    kiosk = "--kiosk "
   else:
     kiosk = ""
   print("On browser exit, shutdown (s) or restart (r)?")
@@ -219,10 +219,10 @@ elif menuResult == "webBrowsingMachine":
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 4",
     "amixer cset numid=3 1",
-    chromiumPath + " --incognito --start-maximized --no-default-browser-check " + URL + " > /dev/null 2>&1",
+    chromiumPath + " --incognito --start-maximized " + kiosk + "--no-default-browser-check " + URL + " > /dev/null 2>&1",
     restartOrShutdown
   ])
-  setAutostart(["bash /home/pi/autorun.sh"])
+  setAutostart(["@xset s off","@xset -dpms","@xset s noblank","bash /home/pi/autorun.sh"])
 elif menuResult == "examClock":
   print("Configuring system as an Exam Clock...")
   removeGrubBootTimeout()
