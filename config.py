@@ -202,8 +202,15 @@ elif menuResult == "webBrowsingMachine":
   setHostname()
   removeGrubBootTimeout()
   setAllowedPopupURLs()
+  print("On startup, load which URL?")
   URL = getSetting("URL")
-  print("Shutdown (s) or restart (r)?")
+  print("Load browser in kiosk (k) mode or not (n)?")
+  kiosk = getSetting("kiosk")
+  if kiosk == "k":
+    kiosk = " --kiosk"
+  else:
+    kiosk = ""
+  print("On browser exit, shutdown (s) or restart (r)?")
   restartOrShutdown = getSetting("restartOrShutdown")
   if restartOrShutdown == "s":
     restartOrShutdown = "shutdown now"
