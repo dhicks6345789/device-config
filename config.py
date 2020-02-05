@@ -222,6 +222,11 @@ elif menuResult == "webBrowsingMachine":
     chromiumPath + " --incognito --start-maximized " + kiosk + "--no-default-browser-check " + URL + " > /dev/null 2>&1",
     restartOrShutdown
   ])
+  writeFileFromArray("/var/spool/cron/crontabs/root", [
+    "15 03 * * * restart"
+  ])
+  os.system("chmod 0600 /var/spool/cron/crontabs/root")
+  
   setAutostart(["@xset s off","@xset -dpms","@xset s noblank","bash /home/pi/autorun.sh"])
 elif menuResult == "examClock":
   print("Configuring system as an Exam Clock...")
