@@ -223,7 +223,7 @@ elif menuResult == "webBrowsingMachine":
     restartOrShutdown
   ])
   writeFileFromArray("/var/spool/cron/crontabs/root", [
-    "15 03 * * * restart"
+    "15 03 * * * restart\n"
   ])
   os.system("chmod 0600 /var/spool/cron/crontabs/root")
   
