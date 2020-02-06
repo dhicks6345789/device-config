@@ -228,7 +228,10 @@ elif menuResult == "webBrowsingMachine":
     "  self.end_headers()",
     "  if self.path == '/restart':",
     "    os.system('reboot')",
-    "  self.wfile.write('Nothing to do.'.encode('utf-8'))",
+    "  elif self.path == '/checkRestart':",
+    "    self.wfile.write('restartPresent'.encode('utf-8'))",
+    "  else:",
+    "    self.wfile.write('Nothing to do.'.encode('utf-8'))",
     "",
     "httpd = http.server.HTTPServer(('127.0.0.1', 8000), restartServer)",
     "httpd.serve_forever()"
