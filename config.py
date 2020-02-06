@@ -216,12 +216,32 @@ elif menuResult == "webBrowsingMachine":
     restartOrShutdown = "shutdown now"
   else:
     restartOrShutdown = "reboot"
+    
+  writeFileFromArray("/home/pi/restartServer.py", [
+    "import os",
+    "import http.server",
+    "",
+    "class restartServer(http.server.BaseHTTPRequestHandler):",
+    "  def do_GET(self):",
+    "  self.send_response(200)",
+    "  self.send_header('Content-type', 'text/html')",
+    "  self.end_headers()",
+    "  if self.path == '/restart':",
+    "    os.system('reboot')",
+    "  self.wfile.write('Nothing to do.'.encode('utf-8'))",
+    "",
+    "httpd = http.server.HTTPServer(('127.0.0.1', 8000), restartServer)",
+    "httpd.serve_forever()"
+  ])
+  
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 4",
     "amixer cset numid=3 1",
+    "python3 /home/pi/restartServer.py &",
     chromiumPath + " --incognito --start-maximized " + kiosk + "--no-default-browser-check " + URL + " > /dev/null 2>&1",
     restartOrShutdown
   ])
+  
   writeFileFromArray("/var/spool/cron/crontabs/root", [
     "15 03 * * * restart\n"
   ])
