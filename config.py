@@ -249,18 +249,18 @@ elif menuResult == "webBrowsingMachine":
   for rcDataLine in readFile("/etc/xdg/openbox/lxde-pi-rc.xml").split("\n"):
     if rcDataLine.strip() == "<applications>":
       inApplications = True
-      output.append("<applications>")
-      output.append("\t<application name=\"panel\">")
-      output.append("\t\t<skip_taskbar>yes</skip_taskbar>")
-      output.append("\t\t<layer>above</layer>")
-      output.append("\t\t</application>")
-      output.append("\t\t<application name=\"panel\" type=\"dock\">")
-      output.append("\t\t<layer>below</layer>")
-      output.append("\t</application>")
-      output.append("\t<application name=\"chromium-browser\">")
-      output.append("\t\t<fullscreen>yes</fullscreen>")
-      output.append("\t</application>")
-      output.append("</applications>")
+      output.append("  <applications>")
+      output.append("    <application name=\"panel\">")
+      output.append("      <skip_taskbar>yes</skip_taskbar>")
+      output.append("      <layer>above</layer>")
+      output.append("      </application>")
+      output.append("      <application name=\"panel\" type=\"dock\">")
+      output.append("      <layer>below</layer>")
+      output.append("    </application>")
+      output.append("    <application name=\"chromium-browser\">")
+      output.append("      <fullscreen>yes</fullscreen>")
+      output.append("    </application>")
+      output.append("  </applications>")
     if not inApplications:
       output.append(rcDataLine)
     if rcDataLine.strip() == "</applications>":
