@@ -48,10 +48,12 @@ def replaceStringsInFile(theFilename, theReplaceArray):
   textFile = open(theFilename, encoding="latin-1")
   textFileContents = textFile.read()
   textFile.close()
+  print(textFileContents)
   for findValue in theReplaceArray.keys():
     print(findValue)
     print(theReplaceArray[findValue])
     textFileContents = textFileContents.replace(findValue, theReplaceArray[findValue])
+  print(textFileContents)
   textFile = open(theFilename, "w")
   textFile.write(textFileContents)
   textFile.close()
