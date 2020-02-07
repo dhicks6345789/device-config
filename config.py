@@ -272,7 +272,8 @@ elif menuResult == "webBrowsingMachine":
     "sleep 4",
     "amixer cset numid=3 1",
     "/usr/bin/python3 /home/pi/restartServer.py &",
-    chromiumPath + " --incognito --start-maximized " + kiosk + "--no-default-browser-check --disable-popup-blocking --load-extension=/home/pi/device-config/popupsToTabs.crx " + URL + " > /dev/null 2>&1",
+    "rm -rf /home/pi/.config/chromium",
+    chromiumPath + " --start-maximized " + kiosk + "--no-default-browser-check --disable-popup-blocking --load-extension=/home/pi/device-config/singleWindow " + URL + " > /dev/null 2>&1",
     restartOrShutdown
   ])
   
