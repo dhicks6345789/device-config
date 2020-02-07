@@ -242,6 +242,8 @@ elif menuResult == "webBrowsingMachine":
   inApplications = False
   output = []
   for rcDataLine in readFile("/etc/xdg/openbox/lxde-pi-rc.xml").split("\n"):
+    if rcDataLine.strip() == "<titleLayout>LIMC</titleLayout>":
+      rcDataLine = "    <titleLayout>C</titleLayout>\n"
     if rcDataLine.strip() == "<applications>":
       inApplications = True
       output.append("  <applications>")
