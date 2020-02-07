@@ -79,6 +79,12 @@ def removeGrubBootTimeout():
     configHandle.write(configString)
     configHandle.close()
     
+def readFile(theFilename):
+  inputFile = open(theFilename)
+  result = inputFile.read()
+  inputFile.close()
+  return result
+    
 def writeFileFromArray(theFilename, theArray):
   outputFile = open(theFilename, "w")
   outputFile.write("\n".join(theArray))
@@ -238,6 +244,9 @@ elif menuResult == "webBrowsingMachine":
     "httpd.serve_forever()"
   ])
   
+  for rcDataLine in readFile("/etc/xdg/openbox/lxde-pi-rc.xml").split["\n"]:
+    print(rcDataLine)
+  
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 4",
     "amixer cset numid=3 1",
@@ -247,7 +256,7 @@ elif menuResult == "webBrowsingMachine":
   ])
   
   writeFileFromArray("/var/spool/cron/crontabs/root", [
-    "15 03 * * * restart\n"
+    "15 03 * * * reboot\n"
   ])
   os.system("chmod 0600 /var/spool/cron/crontabs/root")
   
