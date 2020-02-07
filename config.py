@@ -257,6 +257,9 @@ elif menuResult == "webBrowsingMachine":
       output.append("    <application role=\"browser\">")
       output.append("      <fullscreen>yes</fullscreen>")
       output.append("    </application>")
+      output.append("    <application role=\"pop-up\">")
+      output.append("      <fullscreen>no</fullscreen>")
+      output.append("    </application>")
       output.append("  </applications>")
     if not inApplications:
       output.append(rcDataLine)
