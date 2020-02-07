@@ -211,12 +211,6 @@ elif menuResult == "webBrowsingMachine":
   removeGrubBootTimeout()
   print("On startup, load which URL?")
   URL = getSetting("URL")
-  print("Load browser in kiosk (k) mode or not (n)?")
-  kiosk = getSetting("kiosk")
-  if kiosk == "k":
-    kiosk = "--kiosk "
-  else:
-    kiosk = ""
   print("On browser exit, shutdown (s) or restart (r)?")
   restartOrShutdown = getSetting("restartOrShutdown")
   if restartOrShutdown == "s":
@@ -258,7 +252,7 @@ elif menuResult == "webBrowsingMachine":
       output.append("      <application name=\"panel\" type=\"dock\">")
       output.append("      <layer>below</layer>")
       output.append("    </application>")
-      output.append("    <application name=\"chromium-browser\">")
+      output.append("    <application role=\"browser\">")
       output.append("      <fullscreen>yes</fullscreen>")
       output.append("    </application>")
       output.append("  </applications>")
@@ -272,8 +266,7 @@ elif menuResult == "webBrowsingMachine":
     "sleep 4",
     "amixer cset numid=3 1",
     "/usr/bin/python3 /home/pi/restartServer.py &",
-    "rm -rf /home/pi/.config/chromium",
-    chromiumPath + " --start-maximized " + kiosk + "--no-default-browser-check --disable-popup-blocking --load-extension=/home/pi/device-config/singleWindow " + URL + " > /dev/null 2>&1",
+    chromiumPath + " --incognito --start-maximized --no-default-browser-check --disable-popup-blocking --load-extension=/home/pi/device-config/singleWindow " + URL + " > /dev/null 2>&1",
     restartOrShutdown
   ])
   
