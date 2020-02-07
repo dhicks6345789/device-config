@@ -244,7 +244,7 @@ elif menuResult == "webBrowsingMachine":
     "httpd.serve_forever()"
   ])
   
-  for rcDataLine in readFile("/etc/xdg/openbox/lxde-pi-rc.xml").split["\n"]:
+  for rcDataLine in readFile("/etc/xdg/openbox/lxde-pi-rc.xml").split("\n"):
     print(rcDataLine)
   
   writeFileFromArray("/home/pi/autorun.sh", [
