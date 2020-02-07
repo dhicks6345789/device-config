@@ -265,7 +265,7 @@ elif menuResult == "webBrowsingMachine":
       output.append(rcDataLine)
     if rcDataLine.strip() == "</applications>":
       inApplications = False
-  writeFileFromArray("temp.xml", output)
+  writeFileFromArray("/etc/xdg/openbox/lxde-pi-rc.xml", output)
   
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 4",
