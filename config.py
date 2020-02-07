@@ -244,8 +244,23 @@ elif menuResult == "webBrowsingMachine":
     "httpd.serve_forever()"
   ])
   
+  inApplications = False
+  output = []
   for rcDataLine in readFile("/etc/xdg/openbox/lxde-pi-rc.xml").split("\n"):
-    print(rcDataLine)
+    if rcDataLine.strip() == "<applications>":
+      inApplications = True
+      output.append("\t<application name=\"panel\">")
+      output.append("\t\t<skip_taskbar>yes</skip_taskbar>")
+      output.append("\t\t<layer>above</layer>")
+      output.append("\t\t</application>")
+      output.append("\t\t<application name=\"panel\" type=\"dock\">")
+      output.append("\t\t<layer>below</layer>")
+      output.append("\t</application>")
+    if not inApplications:
+      output.append(rcDataLine)
+    if rcDataLine.strip() == "</applications>":
+      inApplications = False
+  print(output)
   
   writeFileFromArray("/home/pi/autorun.sh", [
     "sleep 4",
