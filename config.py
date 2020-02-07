@@ -54,6 +54,8 @@ def replaceStringsInFile(theFilename, theReplaceArray):
   textFile.write(textFileContents)
   textFile.close()
 
+# Note: this doesn't actually seem to work - setting gets set back on reboot. Added --disable-popup-blocking to Chromium instead.
+# Suspect the "last updated" field needs changing.
 def setAllowedPopupURLs():
   replaceStringsInFile("/home/pi/.config/chromium/Default/Preferences", {"\"popups\":{}":"\"popups\":{\"knightsbridgeschool.isams.cloud,*\":{\"last_modified\":\"13214925214214283\",\"setting\":1}}"})
   
@@ -207,7 +209,6 @@ elif menuResult == "webBrowsingMachine":
   print("Configuring system as a Web Browsing Machine...")
   setHostname()
   removeGrubBootTimeout()
-  setAllowedPopupURLs()
   print("On startup, load which URL?")
   URL = getSetting("URL")
   print("Load browser in kiosk (k) mode or not (n)?")
