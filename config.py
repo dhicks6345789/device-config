@@ -184,7 +184,7 @@ if menuResult == "pythonHugo":
   print("Configuring system with Python and Hugo...")
 elif menuResult == "govukJekyll":
   print("Configuring system with the GOV.UK Jekyll environment...")
-elif menuResult == "webKisok":
+elif menuResult == "webKiosk":
   print("Configuring system as a Web Kiosk...")  
   setHostname()
   removeGrubBootTimeout()
