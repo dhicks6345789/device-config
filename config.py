@@ -182,7 +182,7 @@ def configRclone():
 menuResult = displayMenu(menu)
 if menuResult == "jamstackHugo":
   print("Configuring system with Jamstack for Hugo...")
-elif menuResult == "govukJekyll":
+elif menuResult == "jamstackGovuk":
   print("Configuring system with Jamstack for GOV.UK...")
 elif menuResult == "webKiosk":
   print("Configuring system as a Web Kiosk...")  
