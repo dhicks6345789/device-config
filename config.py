@@ -197,6 +197,7 @@ if menuResult == "jamstackHugo":
   #installJekyll()
 elif menuResult == "jamstackGovuk":
   print("Configuring system with Jamstack for GOV.UK...")
+  installCaddy()
 elif menuResult == "webKiosk":
   print("Configuring system as a Web Kiosk...")  
   setHostname()
