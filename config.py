@@ -180,7 +180,7 @@ def configRclone():
     ])
     
 def installCaddy():
-  # Make sure Caddy (web server) is installed.
+  print("Making sure Caddy (web server) is installed.")
   runIfPathMissing("/usr/bin/caddy", "echo \"deb [trusted=yes] https://apt.fury.io/caddy/ /\" | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list; apt-get update; apt-get install caddy")
   
 def installJekyll():
