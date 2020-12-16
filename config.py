@@ -92,9 +92,10 @@ def writeFileFromArray(theFilename, theArray):
   outputFile.write("\n".join(theArray))
   outputFile.close()
   
-def runIfPathMissing(thePath, theCommand):
+def runIfPathMissing(thePath, theMessage, theCommand):
   if not os.path.exists(thePath):
-    print("Running: " + theCommand)
+    if not theMessage == "":
+      print(theMessage)
     os.system(theCommand)
     
 def runExpect(inputArray):
@@ -120,13 +121,17 @@ def installSensorLab():
     os.system("rm SensorLab\ 1-1-0\ for\ Linux.tar")
     os.system("rm -rf SensorLab\ 1-1-0\ for\ Linux")
     
-def configRclone():
+def installExpect():
   if not os.path.exists("/usr/bin/expect"):
     print("Installing Expect...")
     os.system("apt-get -y install expect")
+    
+def installRclone():
   if not os.path.exists("/usr/bin/rclone"):
     print("Installing rclone...")
     os.system("curl https://rclone.org/install.sh | bash")
+  
+def configRclone():
   if not os.path.exists("/home/pi/.config/rclone/rclone.conf"):
     print("Configuring rclone...")
     runExpect([
@@ -185,19 +190,21 @@ def configRclone():
     ])
     
 def installCaddy():
-  print("Making sure Caddy (web server) is installed.")
-  runIfPathMissing("/usr/bin/caddy", "echo \"deb [trusted=yes] https://apt.fury.io/caddy/ /\" | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list; apt-get update; apt-get install caddy")
+  runIfPathMassing("/usr/bin/caddy", "Installing Caddy (web server)...", "echo \"deb [trusted=yes] https://apt.fury.io/caddy/ /\" | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list; apt-get update; apt-get install caddy")
   
 def installJekyll():
   # Make sure Jekyll (static site generation tool) is installed.
-  runIfPathMissing("/usr/local/bin/jekyll", "gem install bundler jekyll concurrent-ruby")
-  runIfPathMissing("/root/.bundle", "bundle install")
+  runIfPathMissing("/usr/local/bin/jekyll", "Installing Jekyll (static site generator)...", "gem install bundler jekyll concurrent-ruby")
+  runIfPathMissing("/root/.bundle", "", "bundle install")
   os.system("mkdir /.bundle > /dev/null 2>&1")
   #os.system("chown www-data:www-data /.bundle > /dev/null 2>&1")
   
 menuResult = displayMenu(menu)
 if menuResult == "jamstackHugo":
   print("Configuring system with Jamstack for Hugo...")
+  installExpect()
+  installRclone()
+  configRclone()
   installCaddy()
   #installJekyll()
 elif menuResult == "jamstackGovuk":
