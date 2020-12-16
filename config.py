@@ -131,7 +131,7 @@ def installRclone():
 		print("Installing rclone...")
 		os.system("curl https://rclone.org/install.sh | bash")
 
-def configRclone()
+def configRclone():
 	# Make sure Rclone is set up to connect to the user's cloud storage - we might need to ask the user for some details.
 	if not os.path.exists("/root/.config/rclone/rclone.conf"):
 		print("Configuring rclone...")
