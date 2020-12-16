@@ -130,7 +130,7 @@ def installRclone():
   if not os.path.exists("/usr/bin/rclone"):
     print("Installing rclone...")
     os.system("curl https://rclone.org/install.sh | bash")
-  
+    
 def configRclone():
   if not os.path.exists("/home/pi/.config/rclone/rclone.conf"):
     print("Configuring rclone...")
