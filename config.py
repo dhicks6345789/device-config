@@ -130,10 +130,13 @@ def installRclone():
 	if not os.path.exists("/usr/bin/rclone"):
 		print("Installing rclone...")
 		os.system("curl https://rclone.org/install.sh | bash")
-		
-def configRclone():
-	if not os.path.exists("/home/pi/.config/rclone/rclone.conf"):
+
+def configRclone()
+	# Make sure Rclone is set up to connect to the user's cloud storage - we might need to ask the user for some details.
+	if not os.path.exists("/root/.config/rclone/rclone.conf"):
 		print("Configuring rclone...")
+		getUserOption("-contentFolderPath", "Please enter the path that contains the content")
+		getUserOption("-jekyllFolderPath", "Please enter the path that contains the Jekyll setup")
 		runExpect([
 			"spawn /usr/bin/rclone config",
 			"expect \"n/s/q>\"",
@@ -143,11 +146,13 @@ def configRclone():
 			"expect \"Storage>\"",
 			"send \"drive\\r\"",
 			"expect \"client_id>\"",
-			"send \".apps.googleusercontent.com\\r\"",
+			"expect_user -timeout 3600 -re \"(.*)\\n\"",
+			"send \"$expect_out(1,string)\\r\"",
 			"expect \"client_secret>\"",
-			"send \"\\r\"",
+			"expect_user -timeout 3600 -re \"(.*)\\n\"",
+			"send \"$expect_out(1,string)\\r\"",
 			"expect \"scope>\"",
-			"send \"drive\\r\"",
+			"send \"drive.readonly\\r\"",
 			"expect \"root_folder_id>\"",
 			"send \"\\r\"",
 			"expect \"service_account_file>\"",
@@ -155,7 +160,10 @@ def configRclone():
 			"expect \"y/n>\"",
 			"send \"n\\r\"",
 			"expect \"y/n>\"",
-			"send \"y\\r\"",
+			"send \"n\\r\"",
+			"expect \"Enter verification code>\"",
+			"expect_user -timeout 3600 -re \"(.*)\\n\"",
+			"send \"$expect_out(1,string)\\r\"",
 			"expect \"y/n>\"",
 			"send \"n\\r\"",
 			"expect \"y/e/d>\"",
@@ -164,11 +172,11 @@ def configRclone():
 			"expect \"e/n/d/r/c/s/q>\"",
 			"send \"n\\r\"",
 			"expect \"name>\"",
-			"send \"Documents\\r\"",
+			"send \"content\\r\"",
 			"expect \"Storage>\"",
 			"send \"cache\\r\"",
 			"expect \"remote>\"",
-			"send \"drive:\\r\"",
+			"send \"drive:"+userOptions["-contentFolderPath"]+"\\r\"",
 			"expect \"plex_url>\"",
 			"send \"\\r\"",
 			"expect \"plex_username>\"",
@@ -185,10 +193,35 @@ def configRclone():
 			"send \"n\\r\"",
 			"expect \"y/e/d>\"",
 			"send \"y\\r\"",
+			
 			"expect \"e/n/d/r/c/s/q>\"",
+			"send \"n\\r\"",
+			"expect \"name>\"",
+			"send \"jekyll\\r\"",
+			"expect \"Storage>\"",
+			"send \"cache\\r\"",
+			"expect \"remote>\"",
+			"send \"drive:"+userOptions["-jekyllFolderPath"]+"\\r\"",
+			"expect \"plex_url>\"",
+			"send \"\\r\"",
+			"expect \"plex_username>\"",
+			"send \"\\r\"",
+			"expect \"y/g/n>\"",
+			"send \"n\\r\"",
+			"expect \"chunk_size>\"",
+			"send \"10M\\r\"",
+			"expect \"info_age>\"",
+			"send \"1y\\r\"",
+			"expect \"chunk_total_size>\"",
+			"send \"1G\\r\"",
+			"expect \"y/n>\"",
+			"send \"n\\r\"",
+			"expect \"y/e/d>\"",
+			"send \"y\\r\"",
+			
 			"send \"q\\r\""
 		])
-		
+
 def installCaddy():
 	runIfPathMissing("/usr/bin/caddy", "Installing Caddy (web server)...", "echo \"deb [trusted=yes] https://apt.fury.io/caddy/ /\" | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list; apt-get update; apt-get install caddy")
 	
