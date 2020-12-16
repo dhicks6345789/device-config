@@ -178,10 +178,23 @@ def configRclone():
       "expect \"e/n/d/r/c/s/q>\"",
       "send \"q\\r\""
     ])
+    
+def installCaddy():
+  # Make sure Caddy (web server) is installed.
+  runIfPathMissing("/usr/bin/caddy", "echo \"deb [trusted=yes] https://apt.fury.io/caddy/ /\" | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list; apt-get update; apt-get install caddy")
+  
+def installJekyll():
+  # Make sure Jekyll (static site generation tool) is installed.
+  runIfPathMissing("/usr/local/bin/jekyll", "gem install bundler jekyll concurrent-ruby")
+  runIfPathMissing("/root/.bundle", "bundle install")
+  os.system("mkdir /.bundle > /dev/null 2>&1")
+  #os.system("chown www-data:www-data /.bundle > /dev/null 2>&1")
   
 menuResult = displayMenu(menu)
 if menuResult == "jamstackHugo":
   print("Configuring system with Jamstack for Hugo...")
+  installCaddy()
+  #installJekyll()
 elif menuResult == "jamstackGovuk":
   print("Configuring system with Jamstack for GOV.UK...")
 elif menuResult == "webKiosk":
