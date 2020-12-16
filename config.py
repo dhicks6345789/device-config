@@ -5,8 +5,6 @@ import os
 import sys
 import collections
 
-settings = {}
-
 chromiumPath = ""
 if os.path.exists("/usr/bin/chromium"):
 	chromiumPath = "/usr/bin/chromium"
@@ -22,6 +20,19 @@ menu["Client Environments"]["Web-based Kiosk"] = "webKiosk"
 menu["Client Environments"]["Datalogging Machine"] = "dataloggingMachine"
 menu["Client Environments"]["Web Browsing Machine"] = "webBrowsingMachine"
 menu["Client Environments"]["Exam Clock"] = "examClock"
+
+# Parse any options set by the user on the command line.
+validBooleanOptions = []
+validValueOptions = ["-domainName", "-contentFolderPath", "-jekyllFolderPath"]
+settings = {}
+optionCount = 1
+while optionCount < len(sys.argv):
+	if sys.argv[optionCount] in validBooleanOptions:
+		settings[sys.argv[optionCount]] = True
+	elif sys.argv[optionCount] in validValueOptions:
+		settings[sys.argv[optionCount]] = sys.argv[optionCount+1]
+		optionCount = optionCount + 1
+	optionCount = optionCount + 1
 
 def getSetting(theSetting):
 	if not theSetting in settings.keys():
@@ -135,8 +146,8 @@ def configRclone():
 	# Make sure Rclone is set up to connect to the user's cloud storage - we might need to ask the user for some details.
 	if not os.path.exists("/root/.config/rclone/rclone.conf"):
 		print("Configuring rclone...")
-		getUserOption("-contentFolderPath", "Please enter the path that contains the content")
-		getUserOption("-jekyllFolderPath", "Please enter the path that contains the Jekyll setup")
+		getSetting("-contentFolderPath", "Please enter the Google Drive path that contains the content")
+		getSetting("-jekyllFolderPath", "Please enter the Google Drive path that contains the Jekyll setup")
 		runExpect([
 			"spawn /usr/bin/rclone config",
 			"expect \"n/s/q>\"",
