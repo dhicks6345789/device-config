@@ -91,6 +91,11 @@ def writeFileFromArray(theFilename, theArray):
   outputFile = open(theFilename, "w")
   outputFile.write("\n".join(theArray))
   outputFile.close()
+  
+def runIfPathMissing(thePath, theCommand):
+  if not os.path.exists(thePath):
+    print("Running: " + theCommand)
+    os.system(theCommand)
     
 def runExpect(inputArray):
   writeFileFromArray("temp.expect", inputArray)
