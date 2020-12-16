@@ -15,7 +15,7 @@ elif os.path.exists("/usr/bin/chromium-browser"):
   
 menu = collections.OrderedDict()
 menu["Server Environments"] = collections.OrderedDict()
-menu["Server Environments"]["Jamstack with Hugo"] = "jamstackHugo"
+menu["Server Environments"]["Jamstack for Hugo"] = "jamstackHugo"
 menu["Server Environments"]["Jamstack for GOV.UK"] = "jamstackGovuk"
 menu["Client Environments"] = collections.OrderedDict()
 menu["Client Environments"]["Web-based Kiosk"] = "webKiosk"
@@ -180,10 +180,10 @@ def configRclone():
     ])
   
 menuResult = displayMenu(menu)
-if menuResult == "pythonHugo":
-  print("Configuring system with Python and Hugo...")
+if menuResult == "jamstackHugo":
+  print("Configuring system with Jamstack for Hugo...")
 elif menuResult == "govukJekyll":
-  print("Configuring system with the GOV.UK Jekyll environment...")
+  print("Configuring system with Jamstack for GOV.UK...")
 elif menuResult == "webKiosk":
   print("Configuring system as a Web Kiosk...")  
   setHostname()
