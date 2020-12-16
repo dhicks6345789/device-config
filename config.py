@@ -15,8 +15,8 @@ elif os.path.exists("/usr/bin/chromium-browser"):
   
 menu = collections.OrderedDict()
 menu["Server Environments"] = collections.OrderedDict()
-menu["Server Environments"]["Python with Hugo"] = "pythonHugo"
-menu["Server Environments"]["GOV.UK / Jekyll"] = "govukJekyll"
+menu["Server Environments"]["Jamstack with Hugo"] = "jamstackHugo"
+menu["Server Environments"]["Jamstack for GOV.UK"] = "jamstackGovuk"
 menu["Client Environments"] = collections.OrderedDict()
 menu["Client Environments"]["Web-based Kiosk"] = "webKiosk"
 menu["Client Environments"]["Datalogging Machine"] = "dataloggingMachine"
