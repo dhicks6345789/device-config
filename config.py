@@ -202,14 +202,13 @@ def installJekyll():
 menuResult = displayMenu(menu)
 if menuResult == "jamstackHugo":
   print("Configuring system with Jamstack for Hugo...")
-  installExpect()
-  installRclone()
-  configRclone()
-  installCaddy()
-  #installJekyll()
 elif menuResult == "jamstackGovuk":
   print("Configuring system with Jamstack for GOV.UK...")
   installCaddy()
+  installExpect()
+  installRclone()
+  configRclone()
+  #installJekyll()
 elif menuResult == "webKiosk":
   print("Configuring system as a Web Kiosk...")  
   setHostname()
