@@ -90,6 +90,16 @@ def runExpect(inputArray):
     os.system("su pi -c \"expect temp.expect\"")
     os.system("rm temp.expect")
 
+# A function to write the LXDE autostart file on the Raspberry Pi to run the given command lines, given as an array of strings.
+def setPiAutostart(autostartLines):
+    print("Re-writing GUI Autostart file.")
+    writeFile("/etc/xdg/lxsession/LXDE-pi/autostart", [
+        "xset s noblank"
+        "xset s off"
+        "xset -dpms"
+        "point-rpi"
+    ] + autostartLines)
+    
 # Make sure RClone (a cloud file access utility) is installed.
 def installRclone():
     if not os.path.exists("/usr/bin/rclone"):
