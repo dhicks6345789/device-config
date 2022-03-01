@@ -60,8 +60,9 @@ def parseSettings():
             sys.exit(1)
         optionCount = optionCount + 1
 
-def getSetting(theSetting):
+def getSetting(theSetting, theMessage):
     if not theSetting in settings.keys():
+        print(theMessage)
         settings[theSetting] = input(theSetting + ": ")
     return(settings[theSetting])
 
