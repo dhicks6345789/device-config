@@ -14,6 +14,7 @@ print("Configure system as a Web Kiosk.")
 
 validValueOptions.append("URL")
 validValueOptions.append("restartOrShutdown")
+parseSettings()
 
 print(settings)
 
