@@ -16,20 +16,13 @@ validValueOptions.append("URL")
 validValueOptions.append("restartOrShutdown")
 parseSettings()
 
-print(settings)
-
-print("On startup, load which URL?")
-URL = getSetting("URL")
-
-print(settings)
-
-print("On browser exit, shutdown (s) or restart (r)?")
-restartOrShutdown = getSetting("restartOrShutdown")
+URL = getSetting("URL", "On startup, load which URL?")
+restartOrShutdown = getSetting("restartOrShutdown", "On browser exit, shutdown (s) or restart (r)?")
 if restartOrShutdown == "s":
     restartOrShutdown = "shutdown now"
 else:
     restartOrShutdown = "reboot"
-
+    
 #setHostname()
 #removeGrubBootTimeout()
 
