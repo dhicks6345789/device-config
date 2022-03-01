@@ -26,6 +26,7 @@ else:
 setHostname()
 removeGrubBootTimeout()
 
+restartOrShutdown = ""
 writeFile("/home/pi/autorun.sh", [
     "sleep 4",
     "amixer cset numid=3 1",
