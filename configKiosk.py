@@ -12,14 +12,14 @@ def removeGrubBootTimeout():
 
 print("Configure system as a Web Kiosk.")
 
-validValueOptions.append("URL")
-validValueOptions.append("restartOrShutdown")
+validValueOptions.append("--URL")
+validValueOptions.append("--restartOrShutdown")
 
 print("On startup, load which URL?")
-URL = getSetting("URL")
+URL = getSetting("--URL")
 
 print("On browser exit, shutdown (s) or restart (r)?")
-restartOrShutdown = getSetting("restartOrShutdown")
+restartOrShutdown = getSetting("--restartOrShutdown")
 if restartOrShutdown == "s":
     restartOrShutdown = "shutdown now"
 else:
