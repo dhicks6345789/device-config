@@ -26,7 +26,7 @@ def writeFile(theFilename, theFileData):
         fileDataHandle.write(theFileData)
     else:
         for dataLine in theFileData:
-            fileDataHandle.write((str(dataLine) + "\n").encode())
+            fileDataHandle.write(dataLine + "\n")
     fileDataHandle.close()
 
 # Reads the given file, replaces any strings found in the given dict with their
