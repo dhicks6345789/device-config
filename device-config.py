@@ -5,35 +5,6 @@ import os
 import sys
 import collections
 
-chromiumPath = ""
-if os.path.exists("/usr/bin/chromium"):
-	chromiumPath = "/usr/bin/chromium"
-elif os.path.exists("/usr/bin/chromium-browser"):
-	chromiumPath = "/usr/bin/chromium-browser"
-	
-menu = collections.OrderedDict()
-menu["Server Environments"] = collections.OrderedDict()
-menu["Server Environments"]["Jamstack for Hugo"] = "jamstackHugo"
-menu["Server Environments"]["Jamstack for GOV.UK"] = "jamstackGovuk"
-menu["Client Environments"] = collections.OrderedDict()
-menu["Client Environments"]["Web-based Kiosk"] = "webKiosk"
-menu["Client Environments"]["Datalogging Machine"] = "dataloggingMachine"
-menu["Client Environments"]["Web Browsing Machine"] = "webBrowsingMachine"
-menu["Client Environments"]["Exam Clock"] = "examClock"
-
-# Parse any options set by the user on the command line.
-validBooleanOptions = []
-validValueOptions = ["-domainName", "-contentFolderPath", "-jekyllFolderPath"]
-settings = {}
-optionCount = 1
-while optionCount < len(sys.argv):
-	if sys.argv[optionCount] in validBooleanOptions:
-		settings[sys.argv[optionCount]] = True
-	elif sys.argv[optionCount] in validValueOptions:
-		settings[sys.argv[optionCount]] = sys.argv[optionCount+1]
-		optionCount = optionCount + 1
-	optionCount = optionCount + 1
-
 def getSetting(theSetting):
 	if not theSetting in settings.keys():
 		settings[theSetting] = input(theSetting + ": ")
@@ -92,17 +63,24 @@ def removeGrubBootTimeout():
 		configHandle.write(configString)
 		configHandle.close()
 		
+# Reads the given file, returns the entire contents as a single string.
 def readFile(theFilename):
-	inputFile = open(theFilename)
-	result = inputFile.read()
-	inputFile.close()
+	inHandle = open(theFilename)
+	result = inHandle.read()
+	inHandle.close()
 	return result
-		
-def writeFileFromArray(theFilename, theArray):
-	outputFile = open(theFilename, "w")
-	outputFile.write("\n".join(theArray))
-	outputFile.close()
-	
+
+# Handy utility function to write a file. Takes a file path and either a single string or an array of strings. If an array, will write each
+# string to the given file path with a newline at the end.
+def writeFile(theFilename, theFileData):
+	fileDataHandle = open(theFilename, "w")
+	if isinstance(theFileData, str):
+		fileDataHandle.write(theFileData)
+	else:
+		for dataLine in theFileData:
+			fileDataHandle.write((str(dataLine) + "\n").encode())
+	fileDataHandle.close()
+
 def runIfPathMissing(thePath, theMessage, theCommand):
 	if not os.path.exists(thePath):
 		if not theMessage == "":
