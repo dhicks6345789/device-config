@@ -1,9 +1,9 @@
 import deviceConfig
 
 def setHostname():
-    getSetting("Hostname")
-    if not os.uname == getSetting("Hostname"):
-        os.system("echo " + getSetting("Hostname") + " > /etc/hostname")
+    newHostname = getSetting("hostname", "What do you want to call this computer?")
+    if not os.uname == newHostname
+        os.system("echo " + newHostname + " > /etc/hostname")
 
 def removeGrubBootTimeout():
     if os.path.exists("/boot/grub/grub.cfg"):
