@@ -2,7 +2,7 @@ import sys
 
 import deviceConfig
 
-print("STATUS: Compiling " + sys.argv[1] + " to " + sys.argv[2])
+print("Compiling " + sys.argv[1] + " to " + sys.argv[2])
 
 libText = deviceConfig.readFile("deviceConfig.py")
 outputText = deviceConfig.readFile(sys.argv[1])
