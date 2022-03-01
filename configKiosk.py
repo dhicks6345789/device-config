@@ -20,13 +20,14 @@ URL = getSetting("URL", "On startup, load which URL?")
 restartOrShutdown = getSetting("restartOrShutdown", "On browser exit, shutdown (s) or restart (r)?")
 if restartOrShutdown == "s":
     restartOrShutdown = "shutdown now"
-else:
+elif restartOrShutdown == "r":
     restartOrShutdown = "reboot"
-    
+else:
+    restartOrShutdown = ""
+
 setHostname()
 removeGrubBootTimeout()
 
-restartOrShutdown = ""
 writeFile("/home/pi/autorun.sh", [
     "sleep 4",
     "amixer cset numid=3 1",
