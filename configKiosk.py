@@ -5,18 +5,29 @@ def setHostname():
     if not os.uname == getSetting("Hostname"):
         os.system("echo " + getSetting("Hostname") + " > /etc/hostname")
 
-print("Configuring system as a Web Kiosk...")	
-#setHostname()
-#removeGrubBootTimeout()
+def removeGrubBootTimeout():
+    if os.path.exists("/boot/grub/grub.cfg"):
+        print("Removing boot timeout from grub.cfg.")
+        replaceStringsInFile("/boot/grub/grub.cfg", {"timeout=5":"timeout=0"})
+
+print("Configure system as a Web Kiosk.")
+
+validValueOptions.append("URL")
+validValueOptions.append("restartOrShutdown")
+
 print("On startup, load which URL?")
 URL = getSetting("URL")
+
 print("On browser exit, shutdown (s) or restart (r)?")
 restartOrShutdown = getSetting("restartOrShutdown")
 if restartOrShutdown == "s":
     restartOrShutdown = "shutdown now"
 else:
     restartOrShutdown = "reboot"
-    
+
+#setHostname()
+#removeGrubBootTimeout()
+
 #writeFile("/home/pi/autorun.sh", [
 #    "sleep 4",
 #    "amixer cset numid=3 1",
