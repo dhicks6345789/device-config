@@ -1,5 +1,5 @@
 #!/usr/bin/python3
 
-import device-config
+import deviceConfig
 
 print("Configure a Raspberry Pi to be a web kisok.")
