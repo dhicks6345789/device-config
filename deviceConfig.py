@@ -94,9 +94,9 @@ def runExpect(inputArray):
 def setPiAutostart(autostartLines):
     print("Re-writing GUI Autostart file.")
     writeFile("/etc/xdg/lxsession/LXDE-pi/autostart", [
-        "xset s noblank"
-        "xset s off"
-        "xset -dpms"
+        "xset s noblank",
+        "xset s off",
+        "xset -dpms",
         "point-rpi"
     ] + autostartLines)
     
