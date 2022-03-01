@@ -55,7 +55,10 @@ def parseSettings():
             else:
                 print("ERROR: Invalid argument given: " + argName)
                 sys.exit(1)
-    optionCount = optionCount + 1
+        else:
+            print("ERROR: Orphaned value given: " + sys.argv[optionCount])
+            sys.exit(1)
+        optionCount = optionCount + 1
 
 def getSetting(theSetting):
     if not theSetting in settings.keys():
