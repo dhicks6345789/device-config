@@ -45,11 +45,16 @@ settings = {}
 def parseSettings():
     optionCount = 1
     while optionCount < len(sys.argv):
-        if sys.argv[optionCount] in validBooleanOptions:
-            settings[sys.argv[optionCount]] = True
-        elif sys.argv[optionCount] in validValueOptions:
-            settings[sys.argv[optionCount]] = sys.argv[optionCount+1]
-            optionCount = optionCount + 1
+        if sys.argv[optionCount].startswith("--"):
+            argName = sys.argv[optionCount][2:]
+            if argName in validBooleanOptions:
+                settings[argName] = True
+            elif argName in validValueOptions:
+                settings[argName] = sys.argv[optionCount+1]
+                optionCount = optionCount + 1
+            else:
+                print("ERROR: Invalid argument given: " + argName)
+                sys.exit(1)
     optionCount = optionCount + 1
 
 def getSetting(theSetting):
