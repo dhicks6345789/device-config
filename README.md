@@ -1,10 +1,10 @@
 # device-config
-A script to set up a specific development / runtime environment on a Operating System - the target might be a VM or a physical device. Made with the setup of dedicated thin client / kiosk devices in mind.
+A library of scripts to set up a specific development / runtime environment on a Operating System - the target might be a VM or a physical device. Made with the setup of dedicated thin client / kiosk devices in mind.
 
 ## Installation
-You can download directly from Github:
+You can download the repository from Github. Each named script in the repository includes a common library file, deviceConfig.py. A "compiled" version is available that combines this library file into one file, ready to download and run with no further dependancies. For example:
 ```
-curl -s https://raw.githubusercontent.com/dhicks6345789/device-config/master/config.py > config.py; sudo python3 config.py; rm config.py
+curl -s https://www.sansay.co.uk/device-config/configKiosk.py > config.py; sudo python3 config.py --URL https://www.google.com --restartOrShutdown r; rm config.py
 ```
 
 ## Notes
