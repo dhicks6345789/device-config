@@ -37,7 +37,21 @@ def runIfPathMissing(thePath, theMessage, theCommand):
         if not theMessage == "":
             print(theMessage)
         os.system(theCommand)
-    
+
+validBooleanOptions = []
+validValueOptions = []
+settings = {}
+# Parse any options set by the user on the command line.
+def parseSettings():
+    optionCount = 1
+    while optionCount < len(sys.argv):
+        if sys.argv[optionCount] in validBooleanOptions:
+            settings[sys.argv[optionCount]] = True
+        elif sys.argv[optionCount] in validValueOptions:
+            settings[sys.argv[optionCount]] = sys.argv[optionCount+1]
+            optionCount = optionCount + 1
+    optionCount = optionCount + 1
+
 def getSetting(theSetting):
     if not theSetting in settings.keys():
         settings[theSetting] = input(theSetting + ": ")
