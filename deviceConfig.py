@@ -5,6 +5,12 @@ import os
 import sys
 import collections
 
+chromiumPath = ""
+if os.path.exists("/usr/bin/chromium"):
+    chromiumPath = "/usr/bin/chromium"
+elif os.path.exists("/usr/bin/chromium-browser"):
+    chromiumPath = "/usr/bin/chromium-browser"
+
 # Reads the given file, returns the entire contents as a single string.
 def readFile(theFilename):
     inHandle = open(theFilename, encoding="latin-1")
