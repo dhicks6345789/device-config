@@ -15,8 +15,12 @@ print("Configure system as a Web Kiosk.")
 validValueOptions.append("URL")
 validValueOptions.append("restartOrShutdown")
 
+print(settings)
+
 print("On startup, load which URL?")
 URL = getSetting("URL")
+
+print(settings)
 
 print("On browser exit, shutdown (s) or restart (r)?")
 restartOrShutdown = getSetting("restartOrShutdown")
