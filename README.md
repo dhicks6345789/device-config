@@ -19,25 +19,8 @@ curl -s https://www.sansay.co.uk/device-config/configKiosk.py > config.py; sudo 
 
 Note that, in the above example, the ampersands in the given URL need to be double-escaped, i.e. "\\\\\&".
 
-## Notes
-* Python with Hugo run environment
-* GOV.UK / Jekyll run environment
-* US Gov run environment?
-* If wireless hardware present:
-  * Option: initial setup via self-hosted wireless network
-  * Separate application: Wireless network picker
-* BigClown console / server
-* Configure RClone
-* Code for data sync application
-  * Pick startup application
-  * Chromium
-  * Option: wireless signal / battery / volume / shortcut homepage as default "new tab" homepage
-  * Option: Kiosk
-  * Option: URL(s)
-  * Default: localhost for homepage
-  * Option: Refresh when file (GDrive) updated
-  * Configure RClone...
-  * LogIT uLog Sensorlab (x86 only)
-  * Configure RClone
-  * Add VNC (x86, so not built-in RealVNC)
-  * Add NoVNC
+### configWebBrowsingMachine
+Configures a machine to be a basic web-browsing machine, loading up a full-screen incognito-mode web browser on boot and nothing else. Useful as a web-only thin-client device for public workstations.
+
+### configExamClock
+Configures a machine to be an "exam clock" - simply boots up and displays the time in as large a font as possible. Handy for exam situations if you happen to have a Raspberry Pi or old PC you want to dedicate to being a clock device.
