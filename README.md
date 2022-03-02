@@ -12,8 +12,10 @@ Configures a machine to be a "kiosk", loading nothing but a web browser pointing
 The following example displays a simple Google Slides document on a loop, with 5 seconds between each page of the slideshow.
 
 ```
-curl -s https://www.sansay.co.uk/device-config/configKiosk.py > config.py; sudo python3 config.py --URL https://docs.google.com/presentation/d/e/2PACX-1vRyBGWp7WzWYwkhgSPoVSmaihvJm7rfCpg7AKginEDP0dHrbGIYk9S0sAIF7m8O3V8GT3x0-o2es4Re/pub?start=true\&loop=true\&delayms=5000; rm config.py
+curl -s https://www.sansay.co.uk/device-config/configKiosk.py > config.py; sudo python3 config.py --URL https://docs.google.com/presentation/d/e/2PACX-1vRyBGWp7WzWYwkhgSPoVSmaihvJm7rfCpg7AKginEDP0dHrbGIYk9S0sAIF7m8O3V8GT3x0-o2es4Re/pub?start=true\\\&loop=true\\\&delayms=5000; rm config.py
 ```
+
+Note that, in the above example, the ampersands in the given URL need to be double-escaped, i.e. "\\\&".
 
 ## Notes
 * Python with Hugo run environment
