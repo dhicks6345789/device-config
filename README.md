@@ -20,7 +20,7 @@ curl -s https://www.sansay.co.uk/device-config/configKiosk.py > config.py; sudo 
 Note that, in the above example, the ampersands in the given URL need to be double-escaped, i.e. "\\\\\&".
 
 ### configWebBrowsingMachine
-Configures a machine to be a basic web-browsing machine, loading up a full-screen incognito-mode web browser on boot and nothing else. Useful as a web-only thin-client device for public workstations.
+Configures a machine to be a basic web-browsing machine, loading up a full-screen incognito-mode web browser on boot and nothing else. Useful as a web-only thin-client device for public workstations. The browser can start up with a list of URLs to load, so you can set your thin client to load a home page or whatever you want.
 
 ### configExamClock
 Configures a machine to be an "exam clock" - simply boots up and displays the time in as large a font as possible. Handy for exam situations if you happen to have a Raspberry Pi or old PC you want to dedicate to being a clock device.
