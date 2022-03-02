@@ -1,5 +1,7 @@
-# device-config
+# Device Config
 A library of scripts to set up a specific development / runtime environment on an Operating System - the target might be a VM or a physical device. Made with the setup of dedicated thin client / kiosk devices in mind, in particular using the Raspberry Pi and the associated (Debian-based) Raspberry Pi OS both on the Pi itself and on Intel machines.
+
+**Important Note: Some of these scripts are designed to configure the way a physical or virtual machine boots and loads applications and the user interface. They are for use on devices (Raspberry Pis, old PCs) you are aiming to use as dedicated kiosk / thin client machines, not for running on a typical desktop PC.**
 
 ## Installation & Usage
 You can download the repository from Github. The scripts are written in Python, you will need to have Python installed (generally a default on most Linux distributions). Some scripts use other libraries / utilities, such as Expect, the scripts themselves will take care of installation if needed.
