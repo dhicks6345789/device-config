@@ -20,7 +20,7 @@ URL = getSetting("URL", "On startup, load which URL?")
 setHostname()
 removeGrubBootTimeout()
 runIfPathMissing("/usr/bin/unclutter", "Installing Unclutter, a utility for hiding the mouse cursor.", "apt -y install unclutter")
-runIfPathMissing("/usr/bin/unclutter", "Installing XDoTool, a utility for automating XWindows via simulated mouse / keypresses.", "apt -y install xdotool")
+runIfPathMissing("/usr/bin/xdotool", "Installing XDoTool, a utility for automating XWindows via simulated mouse / keypresses.", "apt -y install xdotool")
 
 writeFile("/home/pi/autorun.sh", [
     "sleep 4",
