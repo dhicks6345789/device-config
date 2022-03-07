@@ -28,7 +28,7 @@ writeFile("/home/pi/autorun.sh", [
     "unclutter -idle 0 &",
     chromiumPath + " --incognito --no-default-browser-check --kiosk --disable-popup-blocking --disable-component-update &",
     "sleep 15",
-    "xdotool type " + URL + "'",
+    "xdotool type '" + URL + "'",
     "xdotool key Linefeed",
     "sleep 4",
     "xdotool key F11"
