@@ -100,6 +100,9 @@ def runExpect(inputArray):
 def setPiAutostart(autostartLines):
     print("Re-writing GUI Autostart file.")
     writeFile("/etc/xdg/lxsession/LXDE-pi/autostart", [
+        "# @lxpanel --profile LXDE-pi",
+        "# @pcmanfm --desktop --profile LXDE-pi",
+        "# @xscreensaver -no-splash",
         "xset s noblank",
         "xset s off",
         "xset -dpms",
