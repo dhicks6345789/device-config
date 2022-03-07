@@ -26,7 +26,7 @@ writeFile("/home/pi/autorun.sh", [
     "sleep 4",
     "amixer cset numid=3 1",
     "unclutter -idle 0 &",
-    chromiumPath + " --incognito --no-default-browser-check --kiosk --disable-popup-blocking --disable-component-update &",
+    chromiumPath + " --incognito --no-default-browser-check --disable-popup-blocking --disable-component-update &",
     "sleep 15",
     "xdotool type '" + URL + "'",
     "xdotool key Linefeed",
