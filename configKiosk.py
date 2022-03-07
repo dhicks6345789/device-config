@@ -13,28 +13,25 @@ def removeGrubBootTimeout():
 print("Configure system as a Web Kiosk.")
 
 validValueOptions.append("URL")
-validValueOptions.append("restartOrShutdown")
 parseSettings()
 
 URL = getSetting("URL", "On startup, load which URL?")
-restartOrShutdown = getSetting("restartOrShutdown", "On browser exit, shutdown (s) or restart (r)?")
-if restartOrShutdown == "s":
-    restartOrShutdown = "shutdown now"
-elif restartOrShutdown == "r":
-    restartOrShutdown = "reboot"
-else:
-    restartOrShutdown = ""
 
 setHostname()
 removeGrubBootTimeout()
 runIfPathMissing("/usr/bin/unclutter", "Installing Unclutter, a utility for hiding the mouse cursor.", "apt -y install unclutter")
+runIfPathMissing("/usr/bin/unclutter", "Installing XDoTool, a utility for automating XWindows via simulated mouse / keypresses.", "apt -y install xdotool")
 
 writeFile("/home/pi/autorun.sh", [
     "sleep 4",
     "amixer cset numid=3 1",
     "unclutter -idle 0 &",
-    chromiumPath + " --incognito --start-maximized --no-default-browser-check --kiosk --disable-popup-blocking --disable-component-update --simulate-outdated-no-au=\"Tue, 31 Dec 2099 23:59:59 GMT\" --user-agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36\" " + URL + " > /dev/null 2>&1",
-    restartOrShutdown
+    chromiumPath + " --incognito --no-default-browser-check --kiosk --disable-popup-blocking --disable-component-update &",
+    "sleep 15",
+    "xdotool type " + URL + "'",
+    "xdotool key Linefeed",
+    "sleep 4",
+    "xdotool key F11"
 ])
 
 writeFile("/var/spool/cron/crontabs/root", [
@@ -42,5 +39,4 @@ writeFile("/var/spool/cron/crontabs/root", [
 ])
 os.system("chmod 0600 /var/spool/cron/crontabs/root")
 
-#setPiAutostart(["@xset s off","@xset -dpms","@xset s noblank","bash /home/pi/autorun.sh"])
 setPiAutostart(["bash /home/pi/autorun.sh"])
