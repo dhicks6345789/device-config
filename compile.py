@@ -1,9 +1,13 @@
+import os
 import sys
 
 import deviceConfig
 
-print("Compiling " + sys.argv[1] + " to " + sys.argv[2])
-
-libText = deviceConfig.readFile("deviceConfig.py")
-outputText = deviceConfig.readFile(sys.argv[1])
-deviceConfig.writeFile(sys.argv[2], outputText.replace("import deviceConfig", libText))
+for item in os.listdir():
+  if item not in ["compile.py"]:
+    outputFile = sys.argv[1] + "/" + item
+    print("Compiling " + item + " to " + outputFile)
+    
+    #libText = deviceConfig.readFile("deviceConfig.py")
+    #outputText = deviceConfig.readFile(item)
+    #deviceConfig.writeFile(outputFile, outputText.replace("import deviceConfig", libText))
