@@ -221,7 +221,7 @@ def removeGrubBootTimeout():
 # Raspberry Pi OS, as of April 2022, no longer has a default "pi" user, so we can't assume the "/home/pi" home folder exists and have to check and see what
 # home folder actually exists. If just the one home folder exists we use that, otherwise we ask which to use. See Raspberry Pi blog for more details:
 # https://www.raspberrypi.com/news/raspberry-pi-bullseye-update-april-2022/
-def piGetUserHomeFolder:
+def piGetUserHomeFolder():
     homeList = os.listdir("/home")
     if len(homeList) == 1:
         userHome = homeList[0]
