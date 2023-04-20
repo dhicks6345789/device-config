@@ -25,5 +25,5 @@ Configures a machine to be a kiosk device running [ExamWritePad](https://sheldne
 Start with a freshly-installed [Raspberry Pi OS](https://www.raspberrypi.com/software/) machine, either an actual Raspberry Pi or a x86 laptop / desktop. Then, run the command below:
 
 ```
-curl -s https://www.sansay.co.uk/device-config/configExamMachine.py
+curl -s https://www.sansay.co.uk/device-config/configExamMachine.py | sudo bash
 ```
