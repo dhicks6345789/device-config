@@ -207,3 +207,13 @@ def configRclone():
             
             "send \"q\\r\""
         ])
+        
+def setHostname():
+    newHostname = getSetting("hostname", "What do you want to call this computer?")
+    if not os.uname == newHostname:
+        os.system("echo " + newHostname + " > /etc/hostname")
+
+def removeGrubBootTimeout():
+    if os.path.exists("/boot/grub/grub.cfg"):
+        print("Removing boot timeout from grub.cfg.")
+        replaceStringsInFile("/boot/grub/grub.cfg", {"timeout=5":"timeout=0"})
